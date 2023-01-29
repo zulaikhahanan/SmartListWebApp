@@ -1,0 +1,63 @@
+<div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 order-md-2">
+              <img src="images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-6 contents">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="mb-4">
+                      <div id="alert" class="mt-4 alert alert-success alert-dismissible fade show" role="alert">
+                <span id="msg">{{msg}}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="alert2" class="mt-4 alert alert-danger alert-dismissible fade show" role="alert">
+                <span id="err">{{error}}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                    &nbsp; &nbsp;
+                  <h3>Sign In to <strong>SmartList</strong></h3>
+                  <p class="mb-4">Lets Organize Our Task Together!</p>
+                </div>
+                <form  action="/" method="POST">
+
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Email</label>
+                    <input name="email" type="email" class="form-control" id="formGroupExampleInput" placeholder="Email Address" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Password</label>
+                    <input name="pw1" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" required>             
+                  </div>
+                
+                <button type='submit' class="btn text-white btn-block btn-primary">Login</button>
+                </form>
+                &nbsp;
+                <form action="/register" method="get"> 
+                  <input type="submit" value="Sign Up For New Account" class="btn text-white btn-block btn-primary">
+                </form>
+               
+                    
+                </div>
+              </div>       
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script>
+    if( $("#msg").text() == "") 
+    {
+        $("#alert").hide()
+    }
+    if( $("#err").text() == "") 
+    {
+        $("#alert2").hide()
+    }
+</script>

@@ -1,0 +1,53 @@
+<br>
+<nav class='row d-block d-md-none navbar fixed-top navbar-dark bg-blue mb-5'>
+    <img class='d-flex float-left mt-1 ml-2' src='smartList.png' height='50px' onclick="location.href='/account'">
+    <button class="navbar-toggler mr-3 d-flex float-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class='clearfix'></span>
+    <div class="navbar-collapse collapse" id="navbar" data-toggle='collapse'>
+        <ul class="navbar-nav mr-auto ml-3">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/tasks">Orders<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/products">Catalogue<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/profile">Profile<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="px-5 container-fluid">
+    <div class='row d-none d-md-flex mb-4'>
+        <div class='col-md-2 col-lg-2'>
+            <img src='smartList.png' height='30px' onclick="location.href='/account'">
+        </div>
+        <div class='col-md-7 col-lg-8 pt-2'>
+            <div class='d-flex flex-row justify-content-end'>
+                <ul class="pagination">
+                <a href='/admin/tasks' class='page-item pr-4'>
+                    Users
+                </a>
+                <a href='/admin/tasks' class='page-item pr-4'>
+                    Tasks
+                </a>
+                <a href='/logout' class='page-item pr-4'>
+                    Logout
+                </a>
+            </div>
+        </div>
+        <div class='col-md-3 col-lg-2 d-flex justify-content-end'>
+            <div class='d-flex'>
+                <button onclick="location.href='/admin/profile'" type="button" class='btn'>
+                    <span class='float-left pr-3'>{{fullname}}</span>
+                    <img class='rounded-circle float-right' src='profilepictures/{{profilepic}}' height='30px' width='30px'>
+                </button>
+            </div> 
+        </div>
+    </div>
+</div>

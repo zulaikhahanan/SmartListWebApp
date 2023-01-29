@@ -1,0 +1,139 @@
+
+ <div class="container mt-5 mt-md-0">
+        <div class="row mt-4">
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0">
+                <div class="container-fluid" id="accountcont">
+                    <h2>Admin Settings</h2>
+                    <div class="jumbotron bg-grey" id="accountbox">
+                        <form action="/profile" method="POST">
+                            <div id="acctformcont" class="container">
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <input class="form-control" type="text" id="role" value='Admin' placeholder="Member Number" readonly>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="_id">Admin Number</label>
+                                    <input name="_id" class="form-control" type="text" id="_id" value='{{_id}}' placeholder="Member Number" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullname">Fullname</label>
+                                    <input name="fullname" class="form-control" type="text" id="fullname" value='{{fullname}}' placeholder="Full Name" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input name="username"class="form-control" type="text" id="name" value='{{username}}' placeholder="Username" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input name="email" class="form-control" type="email" id="email" value='{{email}}' placeholder="Email" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phonenumber">Contact Number</label>
+                                    <input name="phonenumber" class="form-control" type="text" id="phonenumber" value='{{phonenumber}}'
+                                        placeholder="Phone Number" readonly>
+                                    <span id="error"></span>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="bio">Bio</label>
+                                    <input name="bio" class="form-control" type="text" id="bio" value='{{bio}}'placeholder="Bio" readonly>
+                                </div>
+                                <div class="container row">
+                                    <button id="btnEdit" type="button" class="col-3 offset-4 btn btn-secondary">Edit</button>
+                                    <button id="btnCancel" type="button"  class="col-3 offset-4 btn btn-danger">Cancel</button>
+                                    <button id="btnConfirm" type="submit" class="col-3 offset-2 btn btn-success">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 px-0">
+                <div class="container-fluid">
+                    <h2>Profile Picture</h2>
+                    <div class="jumbotron bg-grey" id="accountbox">
+                        <img src='profilepictures/{{profilepic}}' width='200px'>
+                        <form action="/profilepicture" method="POST" enctype="multipart/form-data">
+                            <input type="file" name='profilePic' accept='image/png,image/jpg,.jpg,.jpeg,.png' class='mt-5 file-width'>
+                            <button class='btn btn-success border mt-3'>Change Picture</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <h2>Password</h2>
+                    <div class="jumbotron bg-grey" id="accountbox">
+                        <form action="/changepassword" method="POST">
+                            <div class="form-group">
+                                <label for="ps1">New Password</label>
+                                <input name="ps1" class="form-control" type="text" class="ps1">
+                            </div>
+                            <div class="form-group">
+                                <label for="ps2">New Password Confirm</label>
+                                <input name="ps2"class="form-control" type="text" class="ps2">
+                            </div>
+                            <button class='btn btn-success border mt-3'>Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    var num;
+    var address;
+    var bio;
+    var instituteName;
+
+    $("#btnEdit").click(function(){
+        num = $("#phonenumber").val();
+        address = $("#address").val();
+        bio = $("#bio").val();
+        instituteName = $("#instituteName").val();
+        $(this).hide();
+        $("#phonenumber").prop("readonly", false);
+        $("#address").prop("readonly", false);
+        $("#bio").prop("readonly", false);
+        $("#instituteName").prop("readonly", false);
+        $("#btnCancel").css("display","block");
+        $("#btnConfirm").css("display","block");
+    });
+
+    $("#btnCancel").click(function(){
+        $("#btnCancel").css("display","none");
+        $("#btnConfirm").css("display","none");
+        $("#btnEdit").show();
+        $("#phonenumber").val(num);
+        $("#address").val(address);
+        $("#bio").val(bio);
+        $("#instituteName").val(instituteName);
+        $("#error").text("");
+        $("#phonenumber").prop("readonly", true);
+        $("#address").prop("readonly", true);
+        $("#bio").prop("readonly", true);
+        $("#instititeName").prop("readonly", true);
+    });
+
+    $("#btnConfirm").click(function(){
+
+        var num = $("#phonenumber").val();
+        console.log(num);
+        //var regex = /^(09)\d{9}$/;
+      
+        
+        {
+            $("#error").text("");
+            $("#btnCancel").css("display","none");
+            $("#btnConfirm").css("display","none");
+            $("#btnEdit").show();
+            $("#phonenumber").prop("readonly", true);
+            $("#address").prop("readonly", true);
+            $("#bio").prop("readonly", true);
+            $("#instituteName").prop("readonly", true);
+        }
+        
+    });
+});
+</script>
+
