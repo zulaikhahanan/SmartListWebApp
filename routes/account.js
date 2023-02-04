@@ -22,18 +22,16 @@ router.get('/account', ensureAuthenticated, (req,res) => {
         }
         else{
             
-            Tasks.getByBuyer(_id, function(tasksList){
-              
+           
                     res.render('account', 
                     {
                         title: 'SmartList',
                         username: results.username,
                         fullname: results.fullname,
                         profilepic: results.profilepic,
-                        tasks: tasksList
+                        
                     })
-               
-            })
+  
         }
     })
 })

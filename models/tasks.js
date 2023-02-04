@@ -5,14 +5,16 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
 
     status: {
-        type: String
+        type: String,
+        required:true
    
     },
+
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'accounts'
- 
-    },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'accounts'
+   },
+
     date_of_assigned: {
         type: Date,
         default: Date.now
@@ -34,40 +36,36 @@ const schema = new mongoose.Schema({
 
 var Tasks = mongoose.model('tasks', schema);
 
-exports.create = function(status, user, date_of_assigned, date_of_due, description, title, type){
+
+//The User Create Task
+exports.create = function(status, date_of_due, description, title, type,user){
     
-   const task = new Tasks({
+  const task = new Tasks({
             status,
-            user,
-            date_of_assigned,
             date_of_due,
             description,
             title,
-            type
+            type,
+            user
     });
    task.save()
 }
 
-exports.getByBuyer = function(id, next){
+//Get the Task By User
+
+exports.getByUser = function(id, next){
     Tasks.find({user: id})
+    
         .sort({'date_of_assigned': 'desc'})
         .limit(100)
-        .exec((err, tasksList) => {
+        .exec((err, taskList) => {
         if (err) throw err;
-        next(tasksList);
+        next(taskList);
     }) 
 }
-
-exports.getAll = function(next){
-    Tasks.find({}).populate('user').exec((err, tasksList) => {
-        if (err) throw err;
-        next(tasksList);
-    });
-}
-
+//Get By User Id
 exports.getById = function(id, next){
     Tasks.find({user: id})
-   
         .populate('user')
         .exec ((err, results) => {
         if (err)  throw err;
@@ -75,9 +73,10 @@ exports.getById = function(id, next){
     })
 }
 
-exports.getItemById = function(_id, next){
-    Tasks.findOne({_id}, (err, results) => {
-        if (err)  throw err;
-        next(results)
+//Delete Tasks
+exports.delete = function(id){
+    Tasks.deleteOne({"_id": id}, function(err, result) {
+       if (err) throw err;
     })
+    console.log("The Task Already Delete")
 }

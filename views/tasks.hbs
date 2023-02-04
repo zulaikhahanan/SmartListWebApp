@@ -1,29 +1,33 @@
 <div class='mx-auto container mt-5 mt-md-0'>
-    <div class='row mt-3 ml-1'>
-      <h3>Welcome Back,{{username}}!</h3>
-     </div>
-      &nbsp;
-   
+
+  
   
     
     <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a>
-
-
+    &nbsp;  &nbsp;
+   
+   
+    <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
+ 
  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
         <div class="card">
           <div class="card-header p-3">
-            <h5 class="mb-0"><i ></i> Incomplete Tasks</h5>
+            <h5 class="mb-0"><i ></i> Incomplete Tasks </h5>
           </div>
-          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 200px">
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;  height: 100%">
 
-            <table class="table mb-0">
+            <table class="table mb-0 w-auto">
+                  
               <thead>
+              
                 <tr>
+                  
+              
                   <th scope="col">Title</th>
-                    <th scope="col">Assigned Date</th>
+                    <th scope="col">Created Date</th>
                   <th scope="col">Type</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Description</th>
@@ -32,9 +36,37 @@
                 </tr>
               </thead>
               <tbody>
- 
-       
-        
+                
+        <tr class="fw-normal">
+           {{#each incompletetask}}
+                  <th>
+                    <span class="ms-2" data-value='{{this._id}}>{{this.title}}</span>
+                  </th>
+            
+                  <td class="align-middle">
+                    <span>{{this.date_of_assigned}}</span>
+                  </td>
+                   <td class="align-middle">
+                    <span>{{this.type}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_due}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.description}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">{{this.status}}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-edit text-success me-3"></i></a>
+                    <a href="/deleteTask" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt text-danger"></i></a>
+                  </td>
+                </tr>
+
+      {{/each}}
               </tbody>
             </table>
 
@@ -44,21 +76,23 @@
 
       </div>
     </div>
-
+       
 &nbsp;
-        <div class="row d-flex justify-content-center align-items-center h-100">
+
+ <div class="container"><h3>{{#if completetask}}{{else}} {{/if}}</h3></div>
+   <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
         <div class="card">
           <div class="card-header p-3">
             <h5 class="mb-0"><i ></i> Completed Tasks </h5>
           </div>
-          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 200px">
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
 
             <table class="table mb-0">
               <thead>
                 <tr>
-                
+               
                   <th scope="col">Title</th>
                     <th scope="col">Assigned Date</th>
                   <th scope="col">Type</th>
@@ -69,8 +103,35 @@
                 </tr>
               </thead>
               <tbody>
-                
-        
+                 <tr class="fw-normal">
+           {{#each completetask}}
+                  <th>
+                    <span class="ms-2" data-value='{{this._id}}>{{this.title}}</span>
+                  </th>
+            
+                  <td class="align-middle">
+                    <span>{{this.date_of_assigned}}</span>
+                  </td>
+                   <td class="align-middle">
+                    <span>{{this.type}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_due}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.description}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">{{this.status}}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-edit text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt text-danger"></i></a>
+                  </td>
+                </tr>
+ {{/each}}
               </tbody>
             </table>
 
@@ -81,4 +142,3 @@
       </div>
     </div>
   </div> 
-

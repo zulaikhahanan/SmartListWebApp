@@ -52,29 +52,53 @@ router.get('/addTask', ensureAuthenticated, (req, res, next) => {
   })
 })
 
-router.post('/createTask', async (req, res) => {
+//Create Task
+router.post('/createTask',async (req, res, next) => {
 
-  const _id = ObjectID(req.session.passport.user);
-
-  Acct.getById(_id, function(results){
-      
-    const { status, title, description, type, date_of_due } = req.body;
-
-      let user = _id;
-     
-
- 
-      Tasks.create(status, title,description, type,date_of_due,user)
-      
-
-      
-  })
+      const _id= ObjectID(req.session.passport.user);
+      let user=_id;
+      let status = "Incomplete";
+      var date_of_due = req.body.date_of_due;
+      var description = req.body.description;
+      var title = req.body.title;
+      var type = req.body.type;
+    
+          Tasks.create(status,date_of_due, description,title,type,user);
+          res.redirect('/mytask');
 });
 
 
+//Read Task
 
+router.get('/mytask', ensureAuthenticated, (req,res) => {
+    
+  const _id = ObjectID(req.session.passport.user);
 
+  Acct.getById(_id, function(results){
+    
+      Tasks.getById(_id, function(taskList){
+        console.log(taskList)
+        var Completed = taskList.filter(obj => {
+          return obj.status !== "Incomplete";
+        })
 
+        var Incomplete = taskList.filter(obj => {
+          return obj.status === "Incomplete";
+        })
+        res.render('tasks', {title: 'SmartList - Tasks',
+          username: results.username,
+          profilepic: results.profilepic,
+          incompletetask:Incomplete,
+          completetask:Completed
+        
+        });
+      })
+  })
+})
+
+//Delete Task
+
+//Update Task
 module.exports = router;
 
 
