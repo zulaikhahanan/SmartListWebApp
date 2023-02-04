@@ -1,20 +1,20 @@
-'use strict';
+
 
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
+
     status: {
-        type: String,
-        required: true
+        type: String
+   
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'accounts',
-        required: true
+        ref: 'accounts'
+ 
     },
     date_of_assigned: {
         type: Date,
-        required: true,
         default: Date.now
     },
     date_of_due: {
@@ -22,24 +22,21 @@ const schema = new mongoose.Schema({
         required: true,
     },
     description: {
-        type: String,
-        required: true,
+        type: String
     },
     title: {
-        type: String,
-        required: true,
+        type: String
     },
     type: {
-        type: String,
-        required: true,
+        type: String
     }
 });
 
 var Tasks = mongoose.model('tasks', schema);
 
 exports.create = function(status, user, date_of_assigned, date_of_due, description, title, type){
-
-    let task = new Tasks({
+    
+   const task = new Tasks({
             status,
             user,
             date_of_assigned,
@@ -48,16 +45,13 @@ exports.create = function(status, user, date_of_assigned, date_of_due, descripti
             title,
             type
     });
-
-    
-
-    task.save()
+   task.save()
 }
 
 exports.getByBuyer = function(id, next){
     Tasks.find({user: id})
         .sort({'date_of_assigned': 'desc'})
-        .limit(10)
+        .limit(100)
         .exec((err, tasksList) => {
         if (err) throw err;
         next(tasksList);

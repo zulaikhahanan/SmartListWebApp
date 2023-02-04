@@ -23,7 +23,7 @@ router.post('/register', (req,res) => {
     }
     else{
         Acct.create(fullname, username, email, phonenumber, pw1, pw2, address, bio, instituteName, ifAdmin);
-        req.flash("msg", "Registration Successful")
+        req.flash("msg", "Registration of the User is Successful")
         res.redirect('/');
     }
     

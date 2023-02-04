@@ -24,7 +24,7 @@ router.get('/tasks', ensureAuthenticated, (req, res, next) => {
           return obj.status === "Complete";
         })
 
-        res.render('managetasks', {title: 'Admin - Tasks',
+        res.render('adminpage', {title: 'Admin - Account',
           fullname: results.fullname,
           username: results.username,
           profilepic: results.profilepic,

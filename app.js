@@ -11,7 +11,6 @@ const multer = require('multer');
 const moment = require('moment');
 const { envPort, dbURL, sessionKey } = require('./config/config');
 const MongoStore = require('connect-mongo')(session);
-
 const app = express();
 require('./config/passport')(passport);
 
@@ -24,7 +23,7 @@ app.use('/admin/',express.static(__dirname+'/public'));
 app.use('/admin/',express.static('assets'));
 
 
-// MongoDB
+
 //Database Connection 
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log("Database Connected"))
@@ -98,7 +97,7 @@ app.use('/', require('./routes/profile'));
 app.use('/', require('./routes/tasks'));
 app.use('/', require('./routes/mytasks'));
 app.use('/', require('./routes/notifications'));
-app.use('/admin', require('./routes/managetasks'));
+app.use('/admin', require('./routes/adminpage'));
 //app.use('/admin', require('./routes/manageUser'));
 app.use('/admin', require('./routes/adminProf'));
 
