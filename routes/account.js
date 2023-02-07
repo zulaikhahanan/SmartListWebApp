@@ -3,7 +3,6 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const mongoose = require("mongoose");
 const moment = require('moment');
-
 const ObjectID = require('mongodb').ObjectID;
 const Acct = require('../models/accounts')
 const Tasks = require('../models/tasks')
@@ -18,11 +17,9 @@ router.get('/account', ensureAuthenticated, (req,res) => {
     Acct.getById(_id, function(results){
         
         if(results.ifAdmin){
-            return res.redirect('/admin/tasks');
+            return res.redirect('/admin/account');
         }
         else{
-            
-           
                     res.render('account', 
                     {
                         title: 'SmartList',
@@ -31,7 +28,6 @@ router.get('/account', ensureAuthenticated, (req,res) => {
                         profilepic: results.profilepic,
                         
                     })
-  
         }
     })
 })

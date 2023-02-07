@@ -130,22 +130,22 @@ label.light {
     <body>
       <div class="row">
     <div class="col-md-12">
-      <form action="/createTask" method="post">
+      <form action="/updateTask" method="POST">
       
         
         <fieldset>
-          
-          <legend><span class="number"> <i class="fa fa-file w3-xxlarge"></i></span> Task Details</legend>
+            <span data-value='{{this._id}}'></span>
+          <legend><span class="number" > <i class="fa fa-file w3-xxlarge"></i></span> Edit Task Details</legend>
         
           <label for="title">Title</label>
-          <input type="text" id="title" name="title">
+          <input type="text" id="title" name="title" value="{{this.title}}">
         
                 
          <label for="description">Description</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea id="description" name="description"  value="{{this.description}}"></textarea>
 
           <label for="date_of_due">Due Date</label>
-          <input type="date" id="date_of_due" name="date_of_due">
+          <input type="date" id="date_of_due" name="date_of_due"  value="{{this.date_of_due}}">
        
          <label for="type">Type/Category</label>
          
@@ -157,13 +157,10 @@ label.light {
             </optgroup>
           </select>
           
-                <label>Status</label>
-          <input type="radio" id="Incomplete" value="Incomplete" name="status"><label for="Incomplete" class="light">Incomplete</label><br>
-        
-          <input type="radio" id="Completed" value="Completed" name="status"><label for="Incomplete" class="light">Completed</label><br>
+     
         </fieldset>
   
-        <button type="submit">Create Task</button>
+        <button type="submit">Edit Task</button>
         
        </form>
         </div>

@@ -16,7 +16,7 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
 
   Acct.getById(_id, function(results){
     
-      Tasks.getById(_id, function(taskList){
+      Tasks.getAll(function(taskList){
         console.log(taskList)
         var Completed = taskList.filter(obj => {
           return obj.status !== "Incomplete";
@@ -24,10 +24,12 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
 
         var Incomplete = taskList.filter(obj => {
           return obj.status === "Incomplete";
+          
         })
-        res.render('notifications', {title: 'SmartList - My Notifications',
+        res.render('notificationsadmin', {title: 'SmartList - Admin Notifications',
           username: results.username,
           profilepic: results.profilepic,
+          fullname: results.fullname,
           incompletetask:Incomplete,
           completetask:Completed
         

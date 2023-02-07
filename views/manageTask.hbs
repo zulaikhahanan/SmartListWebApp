@@ -1,0 +1,65 @@
+<div class='mx-auto container mt-5 mt-md-0'>
+ 
+    
+   
+  
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card">
+          <div class="card-header p-3">
+            <h5 class="mb-0"><i ></i> List of Tasks </h5>
+          </div>
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
+
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Creator</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+          <tr class="fw-normal">
+     {{#each tasks}}
+                  <th>
+                         <span class="ms-2"  data-value='{{this._id}}'>{{this.user.username}}</span>
+                  </th>
+                  
+                  <td class="align-middle">
+                    <span>{{this.date_of_assigned}}</span>
+                  </td>
+                   <td class="align-middle">
+                    <span>{{this.title}}</span>
+                  </td>
+  
+                  <td class="align-middle">
+                   <h6 class="mb-0"><span class="badge bg-success">{{this.status}}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                    
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-edit text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt text-danger"></i></a>
+                  </td>
+                </tr>
+       {{/each}}
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div> 

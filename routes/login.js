@@ -17,7 +17,7 @@ router.all('/admin*', function (req, res, next) {
 
 //Get The Login Page
 router.get('/', forwardAuthenticated, (req,res) => {
-    res.render('login', {title: 'Login', layout: 'landing'})
+    res.render('login', {title: 'SmartList-Login', layout: 'landing'})
 })
 
 //Login Into The System

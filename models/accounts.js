@@ -130,3 +130,16 @@ exports.updatePassword = function(id, hash){
       }
     }).then( x => {console.log("Update Success")});
 }
+
+
+
+exports.getAll = function(next){
+    Acct.find({}, (err, users) => {
+
+        if (err) {
+            throw err;
+        }
+
+        next(users)
+    });
+}

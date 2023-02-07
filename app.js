@@ -89,16 +89,16 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/', require('./routes/index'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/account'));
 app.use('/', require('./routes/profile'));
-app.use('/', require('./routes/tasks'));
 app.use('/', require('./routes/mytasks'));
 app.use('/', require('./routes/notifications'));
+app.use('/admin', require('./routes/notificationsadmin'));
 app.use('/admin', require('./routes/adminpage'));
-//app.use('/admin', require('./routes/manageUser'));
+app.use('/admin', require('./routes/manageUsers'));
+app.use('/admin', require('./routes/manageTasks'));
 app.use('/admin', require('./routes/adminProf'));
 
 // Port

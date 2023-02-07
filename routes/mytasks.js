@@ -3,32 +3,37 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
 const ObjectID = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks = require('../models/tasks');
 
 
-//Get to Task Page
-router.get('/taskPage', ensureAuthenticated, (req, res, next) => {
-
-    const _id = ObjectID(req.session.passport.user);
+//Get Task Page
+router.get('/mytask', ensureAuthenticated, (req,res) => {
     
-    Acct.getById(_id, function(results){
+  const _id = ObjectID(req.session.passport.user);
+
+  Acct.getById(_id, function(results){
+    
+      Tasks.getById(_id, function(taskList){
+        console.log(taskList)
+        var Completed = taskList.filter(obj => {
+          return obj.status !== "Incomplete";
+        })
+
+        var Incomplete = taskList.filter(obj => {
+          return obj.status === "Incomplete";
+        })
+        res.render('tasks', {title: 'SmartList - My Tasks',
+          username: results.username,
+          profilepic: results.profilepic,
+          incompletetask:Incomplete,
+          completetask:Completed
         
-      res.render('tasks', {title: 'My Task',
-        _id: results._id,
-        fullname: results.fullname,
-        profilepic: req.user.profilepic,
-        username: results.username,
-        email: results.email,
-        phonenumber: results.phonenumber,
-        address: results.address,
-        bio: results.bio,
-        instituteName: results.instituteName,
-        profilepic: results.profilepic
+        });
       })
   })
 })
-
 
 //Get to Add Task Page
 router.get('/addTask', ensureAuthenticated, (req, res, next) => {
@@ -63,42 +68,63 @@ router.post('/createTask',async (req, res, next) => {
       var title = req.body.title;
       var type = req.body.type;
     
-          Tasks.create(status,date_of_due, description,title,type,user);
-          res.redirect('/mytask');
+      Tasks.create(status,date_of_due, description,title,type,user);
+      res.redirect('/mytask');
 });
 
 
-//Read Task
-
-router.get('/mytask', ensureAuthenticated, (req,res) => {
-    
-  const _id = ObjectID(req.session.passport.user);
-
-  Acct.getById(_id, function(results){
-    
-      Tasks.getById(_id, function(taskList){
-        console.log(taskList)
-        var Completed = taskList.filter(obj => {
-          return obj.status !== "Incomplete";
-        })
-
-        var Incomplete = taskList.filter(obj => {
-          return obj.status === "Incomplete";
-        })
-        res.render('tasks', {title: 'SmartList - Tasks',
-          username: results.username,
-          profilepic: results.profilepic,
-          incompletetask:Incomplete,
-          completetask:Completed
-        
-        });
-      })
-  })
-})
-
-//Delete Task
 
 //Update Task
+router.post('/updateTask', function(req, res, next) {
+
+  date_of_due = req.body.date_of_due;
+  description = req.body.description;
+  title = req.body.title;
+  type = req.body.type;
+  var id=req.body.id;
+ 
+  Tasks.update(id, date_of_due, description, title, type);
+  res.redirect('/mytask');
+});
+
+
+//Delete Task
+router.post('/deleteTask/:_id', (req, res, next) => {
+  
+  console.log(req.params._id);
+  let id = req.params._id;
+
+  Tasks.delete({
+		_id : id });
+
+	res.redirect("/mytask");
+
+});
+
+
+//Get to the  Update Task Page
+
+
+router.get('/updateTask/:id', ensureAuthenticated, (req, res, next) => {
+  var id= req.body.id;
+  const _id = ObjectId(id);
+  
+  Tasks.getTaskById(_id, function(results){
+      
+    res.render('updateTask', {title: 'Profile',
+      title: results.title,
+ 
+    })
+})
+})
+
+
+
+
+
+
+
+
 module.exports = router;
 
 

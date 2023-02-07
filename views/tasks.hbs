@@ -1,14 +1,12 @@
 <div class='mx-auto container mt-5 mt-md-0'>
-
-  
-  
-    
-    <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a>
-    &nbsp;  &nbsp;
-   
-   
-    <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
  
+      &nbsp;
+   
+
+    <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a>
+
+  &nbsp;
+  <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
@@ -17,32 +15,30 @@
           <div class="card-header p-3">
             <h5 class="mb-0"><i ></i> Incomplete Tasks </h5>
           </div>
-          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;  height: 100%">
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
 
-            <table class="table mb-0 w-auto">
-                  
+            <table class="table mb-0">
               <thead>
-              
                 <tr>
                   
-              
                   <th scope="col">Title</th>
                     <th scope="col">Created Date</th>
                   <th scope="col">Type</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Description</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
+                   <th scope="col">Completion</th>
+          
                 </tr>
               </thead>
               <tbody>
-                
-        <tr class="fw-normal">
-           {{#each incompletetask}}
+          <tr class="fw-normal">
+              {{#each incompletetask}}
                   <th>
-                    <span class="ms-2" data-value='{{this._id}}>{{this.title}}</span>
+                         <span class='taskno' data-value='{{this._id}}'>{{this.title}}</span>
                   </th>
-            
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
                   </td>
@@ -59,14 +55,30 @@
                     <h6 class="mb-0"><span class="badge bg-danger">{{this.status}}</span></h6>
                   </td>
                   <td class="align-middle">
-                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
-                        class="fas fa-edit text-success me-3"></i></a>
-                    <a href="/deleteTask" data-mdb-toggle="tooltip" title="Remove"><i
-                        class="fas fa-trash-alt text-danger"></i></a>
+                  
+
+                 <form action="/updateTask/{{this.id}}" method="GET">
+								      <button type="submit"   class="fas fa-edit text-success me-3"></button>
+							    </form>
+
+                
                   </td>
+                      <td class="align-middle">
+                  
+
+                  <form action="/deleteTask/{{this.id}}" method="post">
+								      <button type="submit" class="fas fa-trash-alt text-danger"></button>
+							    </form>
+
+
+                  </td>
+                      <td class="align-middle">
+                             <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Change Status</a>
+                      </td>
+
                 </tr>
 
-      {{/each}}
+   {{/each}}
               </tbody>
             </table>
 
@@ -76,11 +88,11 @@
 
       </div>
     </div>
-       
+
 &nbsp;
 
- <div class="container"><h3>{{#if completetask}}{{else}} {{/if}}</h3></div>
-   <div class="row d-flex justify-content-center align-items-center h-100">
+<div class="container"><h3>{{#if completetask}}{{else}} {{/if}}</h3></div>
+        <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
         <div class="card">
@@ -94,21 +106,21 @@
                 <tr>
                
                   <th scope="col">Title</th>
-                    <th scope="col">Assigned Date</th>
+                    <th scope="col">Created Date</th>
                   <th scope="col">Type</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Description</th>
                   <th scope="col">Status</th>
                   <th scope="col">Actions</th>
+               
                 </tr>
               </thead>
               <tbody>
-                 <tr class="fw-normal">
-           {{#each completetask}}
+                          <tr class="fw-normal">
+              {{#each completetask}}
                   <th>
-                    <span class="ms-2" data-value='{{this._id}}>{{this.title}}</span>
+                         <span class="ms-2"  data-value='{{this._id}}'>{{this.title}}</span>
                   </th>
-            
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
                   </td>
@@ -122,16 +134,22 @@
                     <span>{{this.description}}</span>
                   </td>
                   <td class="align-middle">
-                    <h6 class="mb-0"><span class="badge bg-danger">{{this.status}}</span></h6>
+                    <h6 class="mb-0"><span class="badge bg-success">{{this.status}}</span></h6>
                   </td>
                   <td class="align-middle">
+                    
                     <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
                         class="fas fa-edit text-success me-3"></i></a>
-                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+              
+                    <a href="/deleteTask/{{this.id}}" data-mdb-toggle="tooltip" title="Remove"><i
                         class="fas fa-trash-alt text-danger"></i></a>
+          
                   </td>
-                </tr>
- {{/each}}
+                  <td>
+                    
+                  </td>
+                </tr> 
+       {{/each}} 
               </tbody>
             </table>
 
@@ -142,3 +160,27 @@
       </div>
     </div>
   </div> 
+
+
+
+<script>
+
+
+      
+    $('.changestatus').click(function() {
+        var taskNo = $(this).parent().siblings().filter('.taskno').data('value');
+        var newStatus = $(this).data('value');
+
+        $.ajax({
+            url: "changeStatus",
+            type: 'POST',
+            data: {taskNo: taskNo, newStatus: newStatus},
+            success: function (data) 
+            { 
+                console.log(newStatus); 
+                window.location.href = "/mytask"; 
+            },
+        });
+    });
+
+</script>

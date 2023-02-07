@@ -50,6 +50,19 @@ exports.create = function(status, date_of_due, description, title, type,user){
     });
    task.save()
 }
+ 
+
+//Get All of the Tasks
+exports.getAll = function(next){
+    Tasks.find({}, (err, tasks) => {
+
+        if (err) {
+            throw err;
+        }
+
+        next(tasks)
+    });
+}
 
 //Get the Task By User
 
@@ -80,3 +93,48 @@ exports.delete = function(id){
     })
     console.log("The Task Already Delete")
 }
+
+//Get All of the Tasks
+exports.getAll = function(next){
+    Tasks.find({}).populate('user').exec((err, taskList) => {
+        if (err) throw err;
+        next(taskList);
+    });
+}
+
+//Update Tasks
+exports.update = function(id, date_of_due, description, title, type){
+
+    Tasks.updateOne({ "_id" : id }, 
+    { "$set" : 
+      {"date_of_due" : date_of_due, 
+        "description" : description,
+        "title" : title,
+        "type" : type
+      }
+    }).then( x => {console.log("Update Success")});
+}
+
+//Change Completion Status
+
+
+//Delete Tasks
+exports.delete = function(id){
+    Tasks.deleteOne({"_id": id}, function(err, result) {
+       if (err) throw err;
+    })
+    console.log("Delete Task")
+}
+
+
+//Get By Id for Task
+//exports.getTaskById = function(id, next){
+ //   Tasks.findOne({"_id":id}, (err, results) => {
+   //     if (err) throw err;
+   //     next(results);
+  //  })
+//}
+
+
+
+

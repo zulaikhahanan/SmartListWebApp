@@ -33,7 +33,7 @@ router.get('/profile', ensureAuthenticated, (req, res, next) => {
     
     Acct.getById(_id, function(results){
         
-      res.render('adminprofile', {title: 'Profile',
+      res.render('adminprofile', {title: 'SmartList- Admin Profile',
          _id: results._id,
         fullname: results.fullname,
         profilepic: req.user.profilepic,

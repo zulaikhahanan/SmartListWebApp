@@ -7,7 +7,7 @@ const Acct = require('../models/accounts')
 
 //Get The Register Page
 router.get('/register', forwardAuthenticated, (req,res) => {
-    res.render('register', {title: 'Register', layout: 'landing'})
+    res.render('register', {title: 'SmartLis - Register', layout: 'landing'})
 })
 
 //Register The New User
