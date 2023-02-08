@@ -101,42 +101,65 @@ router.post('/deleteTask/:_id', (req, res, next) => {
 
 });
 
+// Get to View Task Details
 
-//Get to the  Update Task Page
+router.get('/updateTask/:_id', ensureAuthenticated,(req, res) =>
+{
+  console.log(req.params._id);
+  let id = ObjectId(req.params._id);
 
 
-router.get('/updateTask/:id', ensureAuthenticated, (req, res, next) => {
-  var id= req.body.id;
-  const _id = ObjectId(id);
+  Tasks.getItemById(id, function(results){
+   // console.log(results)
+    res.render('updateTask', {title: 'SmartList - Update My Task',
+          id:results.id,
+          title: results.title,
+          type:  results.type,
+          description : results.description,
+          date_of_due : results.date_of_due,
+          date_of_assigned : results.date_of_assigned,
+          username:results.user.username,
+          user:results.user,
+          status : results.status,
+          username: req.user.username,
+          profilepic: req.user.profilepic,
+          profilepic: results.profilepic
+
+
+        });
+    
   
-  Tasks.getTaskById(_id, function(results){
-      
-    res.render('updateTask', {title: 'Profile',
-      title: results.title,
+  })
+ // res.send(id);
+});
+
+
+//Change Status to Complete
+
+router.post('/changeStatusComplete/:_id', function(req, res, next) {
+  console.log(req.params._id);
+  let id = ObjectId(req.params._id);
+  let status = "Completed";
  
-    })
-})
-})
+  Tasks.updateStatus(id, status);
+  res.redirect('/mytask');
+});
 
+//Change Status to Incomplete
 
-
-
+router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
+  console.log(req.params._id);
+  let id = ObjectId(req.params._id);
+  let status = "Incomplete";
+ 
+  Tasks.updateStatus(id, status);
+  res.redirect('/mytask');
+});
 
 
 
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -102,7 +102,7 @@ app.use('/admin', require('./routes/manageTasks'));
 app.use('/admin', require('./routes/adminProf'));
 
 // Port
-const port = envPort || 3000;
+const port = envPort || 8080;
 
 app.listen(port, () => {
     console.log(`Server listening at ${port}`);

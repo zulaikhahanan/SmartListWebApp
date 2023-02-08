@@ -131,6 +131,15 @@ exports.updatePassword = function(id, hash){
     }).then( x => {console.log("Update Success")});
 }
 
+//Delete User
+exports.delete = function(id){
+    Acct.deleteOne({"_id": id}, function(err, result) {
+       if (err) throw err;
+    })
+    console.log("Delete User")
+}
+
+
 
 
 exports.getAll = function(next){

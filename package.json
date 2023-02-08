@@ -28,7 +28,7 @@
   "engines": {
     "node": "10.16.3"
   },
-  "author": "",
+  "author": "Zulaikha Hanan Binti Bolhan",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20"

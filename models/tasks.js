@@ -116,6 +116,14 @@ exports.update = function(id, date_of_due, description, title, type){
 }
 
 //Change Completion Status
+exports.updateStatus = function(id, status){
+
+    Tasks.updateOne({ "_id" : id }, 
+    { "$set" : 
+      {"status" : status
+      }
+    }).then( x => {console.log("Update Success")});
+}
 
 
 //Delete Tasks
@@ -127,14 +135,10 @@ exports.delete = function(id){
 }
 
 
-//Get By Id for Task
-//exports.getTaskById = function(id, next){
- //   Tasks.findOne({"_id":id}, (err, results) => {
-   //     if (err) throw err;
-   //     next(results);
-  //  })
-//}
-
-
-
-
+//Find Task By Id
+exports.getItemById = function(_id, next){
+    Tasks.findOne({_id}, (err, results) => {
+        if (err)  throw err;
+        next(results)
+    })
+}

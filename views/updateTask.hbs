@@ -130,37 +130,40 @@ label.light {
     <body>
       <div class="row">
     <div class="col-md-12">
-      <form action="/updateTask" method="POST">
+      <form action="/mytask" method="GET">
       
         
         <fieldset>
-            <span data-value='{{this._id}}'></span>
-          <legend><span class="number" > <i class="fa fa-file w3-xxlarge"></i></span> Edit Task Details</legend>
         
+          <legend><span class="number"> <i class="fa fa-file w3-xxlarge"></i></span> View Task Details</legend>
+           
+           <label for="title">Reference ID</label>
+          <input type="text" id="title" name="title" value="{{this.id}}">
+
+          <label for="title">Creator</label>
+          <input type="text" id="title" name="title" value="{{this.username}}">
+
           <label for="title">Title</label>
           <input type="text" id="title" name="title" value="{{this.title}}">
         
-                
-         <label for="description">Description</label>
-          <textarea id="description" name="description"  value="{{this.description}}"></textarea>
+         <label for="description">Description </label>
+          <input type="text" id="description" name="title" value=" {{this.description}}">
+        
+         <label for="status">Status </label>
+          <input type="text" id="status" name="status" value=" {{this.status}}">
+      
 
           <label for="date_of_due">Due Date</label>
-          <input type="date" id="date_of_due" name="date_of_due"  value="{{this.date_of_due}}">
+          <input type="text" id="date_of_due" name="date_of_due"  value="{{this.date_of_due}}">
        
-         <label for="type">Type/Category</label>
-         
-          <select id="type" name="type">
-            <optgroup label="Task Category / Type">
-              <option value="Academic">Academic</option>
-              <option value="Non-Academic">Non-Academic</option>
-             
-            </optgroup>
-          </select>
+           <label for="date_of_assigned">Assigned Date</label>
+          <input type="text" id="date_of_assigned" name="date_of_assigned"  value="{{this.date_of_assigned}}">
+       
           
      
         </fieldset>
   
-        <button type="submit">Edit Task</button>
+        <button type="submit">Back</button>
         
        </form>
         </div>
