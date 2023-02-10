@@ -1,6 +1,42 @@
 <div class="container">
 			<h4 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h4>
 		
+		{{#if incompletetask}}{{else}}{{/if}}
+		 {{#each incompletetask}}
+		 	<div class="notification-ui_dd-content">
+				
+				<div class="notification-list notification-list--unread">
+					<div class="notification-list_content">
+						
+						<div class="notification-list_detail">
+							<p class="text-muted" data-value='{{this._id}}'> You Have Upcoming Task By Title <b>{{this.title}} </b>With Due Date <b>{{ this.date_of_due }}</b>  </p> &nbsp;
+					</div>
+			
+				</div>
+		</div>
+	
+		  {{/each}}
+		
+		
+		
+		
+		
+		{{#if completetask}}{{else}}{{/if}}
+		 {{#each completetask}}
+		 	<div class="notification-ui_dd-content">
+				
+				<div class="notification-list notification-list--unread">
+					<div class="notification-list_content">
+						
+						<div class="notification-list_detail">
+							<p class="text-muted" data-value='{{this._id}}'> You Completed the Task By Title <b>{{this.title}}</b> Created At <b>{{this.date_of_assigned}}</b> </p> &nbsp;
+					</div>
+			
+				</div>
+		</div>
+	
+		  {{/each}}
+		  &nbsp;
 <h4 class="m-b-50 heading-line">Incomplete Tasks</i></h4>
  <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
    {{#each incompletetask}}

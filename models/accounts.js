@@ -36,8 +36,7 @@ const schema = new mongoose.Schema({
         type: String
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     ifAdmin: {
         type: Boolean,
@@ -131,7 +130,6 @@ exports.updatePassword = function(id, hash){
     }).then( x => {console.log("Update Success")});
 }
 
-//Delete User
 exports.delete = function(id){
     Acct.deleteOne({"_id": id}, function(err, result) {
        if (err) throw err;
@@ -151,4 +149,28 @@ exports.getAll = function(next){
 
         next(users)
     });
+}
+
+exports.getUserById = function(_id, next){
+    Acct.findOne({_id}, (err, results) => {
+        if (err)  throw err;
+        next(results)
+    })
+}
+
+exports.adminUpdate = function(_id, username, fullname, email,address,instituteName,bio,phonenumber){
+
+    Acct.updateOne({ _id}, 
+    { "$set" : 
+      {"username" : username, 
+        "fullname" : fullname,
+        "email" : email,
+        "address":address,
+        "instituteName":instituteName,
+        "bio":bio,
+        "phonenumber": phonenumber
+
+        
+      }
+    }).then( x => {console.log("Update Success")});
 }
