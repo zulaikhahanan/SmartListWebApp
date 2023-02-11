@@ -63,5 +63,24 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
  // res.send(id);
 });
 
+// Admin Change Status to Completed
+router.post('/changeStatusCompleted/:_id', function(req, res, next) {
+  console.log(req.params._id);
+  let id = ObjectID(req.params._id);
+  let status = "Completed";
+ 
+  Tasks.updateStatus(id, status);
+  res.redirect('/admin/managetasks');
+});
+
+//Admin Change Status to Incompleted
+router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
+  console.log(req.params._id);
+  let id = ObjectID(req.params._id);
+  let status = "Incomplete";
+ 
+  Tasks.updateStatus(id, status);
+  res.redirect('/admin/managetasks');
+});
 
 module.exports = router;

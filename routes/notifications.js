@@ -8,8 +8,6 @@ const Tasks = require('../models/tasks');
 
 
 //Get To Notification Page
-
-
 router.get('/notifications', ensureAuthenticated, (req,res) => {
     
   const _id = ObjectID(req.session.passport.user);

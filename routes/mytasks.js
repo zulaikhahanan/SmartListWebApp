@@ -102,7 +102,6 @@ router.post('/deleteTask/:_id', (req, res, next) => {
 });
 
 // Get to View Task Details
-
 router.get('/updateTask/:_id', ensureAuthenticated,(req, res) =>
 {
   console.log(req.params._id);
@@ -135,7 +134,6 @@ router.get('/updateTask/:_id', ensureAuthenticated,(req, res) =>
 
 
 //Change Status to Complete
-
 router.post('/changeStatusComplete/:_id', function(req, res, next) {
   console.log(req.params._id);
   let id = ObjectId(req.params._id);
@@ -146,7 +144,6 @@ router.post('/changeStatusComplete/:_id', function(req, res, next) {
 });
 
 //Change Status to Incomplete
-
 router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   console.log(req.params._id);
   let id = ObjectId(req.params._id);

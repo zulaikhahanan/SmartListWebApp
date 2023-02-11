@@ -31,7 +31,7 @@ router.get('/addUser', ensureAuthenticated, (req, res, next) => {
 })
 
 // Admin create the New User
-router.post('/addUser', (req,res) => {
+router.post('/addUser',ensureAuthenticated, (req,res) => {
 
   const { fullname, username, email, phonenumber, pw1, address, bio, instituteName, ifAdmin } = req.body;
 
@@ -117,16 +117,16 @@ router.post('/updateUser/:_id', function(req, res, next) {
 //Add New User
 router.post('/addUser', (req,res) => {
 
-  const { fullname, username, email, phonenumber, pw1,  address, bio, instituteName, ifAdmin } = req.body;
+  const { fullname, username, email, phonenumber, pw1, pw2, address, bio, instituteName, ifAdmin } = req.body;
 
   if( Acct.ifExists(email) )
   {
-      res.render( 'addUser', {
+      res.render( 'manageusers', {
           error: "User Already Existed With The Email"
       })
   }
   else{
-      Acct.create(fullname, username, email, phonenumber, pw1,  address, bio, instituteName, ifAdmin);
+      Acct.create(fullname, username, email, phonenumber, pw1, pw2, address, bio, instituteName, ifAdmin);
       req.flash("msg", "Registration of the User is Successful")
       res.redirect('/admin/manageUsers');
   }

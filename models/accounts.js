@@ -29,13 +29,14 @@ const schema = new mongoose.Schema({
     phonenumber: {
         type: String
     },
+    address: {
+        type: String,
+        required:true
+    },
     instituteName: {
         type: String,
     },
     bio: {
-        type: String
-    },
-    address: {
         type: String
     },
     ifAdmin: {
@@ -174,3 +175,4 @@ exports.adminUpdate = function(_id, username, fullname, email,address,instituteN
       }
     }).then( x => {console.log("Update Success")});
 }
+
