@@ -65,10 +65,10 @@ router.post('/createTask',async (req, res, next) => {
       let status = "Incomplete";
       var date_of_due = req.body.date_of_due;
       var description = req.body.description;
-      var title = req.body.title;
+      var name= req.body.name;
       var type = req.body.type;
     
-      Tasks.create(status,date_of_due, description,title,type,user);
+      Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 });
 
@@ -79,11 +79,11 @@ router.post('/updateTask', function(req, res, next) {
 
   date_of_due = req.body.date_of_due;
   description = req.body.description;
-  title = req.body.title;
+  name = req.body.name;
   type = req.body.type;
   var id=req.body.id;
  
-  Tasks.update(id, date_of_due, description, title, type);
+  Tasks.update(id, date_of_due, description, name, type);
   res.redirect('/mytask');
 });
 
@@ -102,7 +102,7 @@ router.post('/deleteTask/:_id', (req, res, next) => {
 });
 
 // Get to View Task Details
-router.get('/updateTask/:_id', ensureAuthenticated,(req, res) =>
+router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
 {
   console.log(req.params._id);
   let id = ObjectId(req.params._id);
@@ -110,9 +110,9 @@ router.get('/updateTask/:_id', ensureAuthenticated,(req, res) =>
 
   Tasks.getItemById(id, function(results){
    // console.log(results)
-    res.render('updateTask', {title: 'SmartList - Update My Task',
+    res.render('viewTask', {title: 'SmartList - View My Task',
           id:results.id,
-          title: results.title,
+          name: results.name,
           type:  results.type,
           description : results.description,
           date_of_due : results.date_of_due,

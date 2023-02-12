@@ -37,7 +37,7 @@
           <tr class="fw-normal">
               {{#each incompletetask}}
                   <th>
-                         <span class='orderno' data-value='{{this._id}}'>{{this.title}}</span>
+                         <span class='orderno' data-value='{{this._id}}'>{{this.name}}</span>
                   </th>
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
@@ -57,7 +57,7 @@
                   <td class="align-middle">
                   
 
-                 <form action="/updateTask/{{this.id}}" method="GET">
+                 <form action="/viewTask/{{this.id}}" method="GET">
 								     <center><button type="submit"   class="fas fa-file text-success me-3"></button></center>  
 							    </form>
 
@@ -125,7 +125,7 @@
                           <tr class="fw-normal">
               {{#each completetask}}
                   <th>
-                         <span class="ms-2"  data-value='{{this._id}}'>{{this.title}}</span>
+                         <span class="ms-2"  data-value='{{this._id}}'>{{this.name}}</span>
                   </th>
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
@@ -145,7 +145,7 @@
                   <td class="align-middle">
                   
 
-                 <form action="/updateTask/{{this.id}}" method="GET">
+                 <form action="/viewTask/{{this.id}}" method="GET">
 								       <center><button type="submit"   class="fas  fa-file  text-success me-3"></button></center>
 							    </form>
 

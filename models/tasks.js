@@ -24,7 +24,7 @@ const schema = new mongoose.Schema({
     description: {
         type: String
     },
-    title: {
+    name: {
         type: String
     },
     type: {
@@ -36,13 +36,13 @@ var Tasks = mongoose.model('tasks', schema);
 
 
 //The User Create Task
-exports.create = function(status, date_of_due, description, title, type,user){
+exports.create = function(status, date_of_due, description, name, type,user){
     
   const task = new Tasks({
             status,
             date_of_due,
             description,
-            title,
+            name,
             type,
             user
     });
@@ -101,13 +101,13 @@ exports.getAll = function(next){
 }
 
 //Update Tasks
-exports.update = function(id, date_of_due, description, title, type){
+exports.update = function(id, date_of_due, description, name, type){
 
     Tasks.updateOne({ "_id" : id }, 
     { "$set" : 
       {"date_of_due" : date_of_due, 
         "description" : description,
-        "title" : title,
+        "name" : name,
         "type" : type
       }
     }).then( x => {console.log("Update Success")});

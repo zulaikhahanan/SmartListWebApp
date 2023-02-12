@@ -9,12 +9,12 @@
 					<div class="notification-list_content">
 						
 						<div class="notification-list_detail">
-							<p class="text-muted" data-value='{{this._id}}'> You Have Upcoming Task By Title <b>{{this.title}} </b>With Due Date <b>{{ this.date_of_due }}</b>  </p> &nbsp;
+							<p class="text-muted" data-value='{{this._id}}'> You Have Upcoming Task By Title <b>{{this.name}} </b>With Due Date <b>{{ this.date_of_due }}</b>  </p> &nbsp;
 					</div>
 			
 				</div>
 		</div>
-	
+			</div>
 		  {{/each}}
 		
 		
@@ -29,11 +29,12 @@
 					<div class="notification-list_content">
 						
 						<div class="notification-list_detail">
-							<p class="text-muted" data-value='{{this._id}}'> You Completed the Task By Title <b>{{this.title}}</b> Created At <b>{{this.date_of_assigned}}</b> </p> &nbsp;
+							<p class="text-muted" data-value='{{this._id}}'> You Completed the Task By Title <b>{{this.name}}</b> Created At <b>{{this.date_of_assigned}}</b> </p> &nbsp;
 					</div>
 			
 				</div>
 		</div>
+			</div>
 	
 		  {{/each}}
 		  &nbsp;
@@ -46,7 +47,7 @@
 					<div class="notification-list_content">
 						
 						<div class="notification-list_detail">
-							<h3 class="text-muted" data-value='{{this._id}}'> {{this.title}}</h3> &nbsp;
+							<h3 class="text-muted" data-value='{{this._id}}'> {{this.name}}</h3> &nbsp;
 							<p class="text-muted" data-value='{{this._id}}'>Task ID : {{this.id}}</p> &nbsp;
 							<p class="text-muted">Created At : {{this.date_of_assigned}}</p> &nbsp;
 							<p class="text-muted">Due Date : {{this.date_of_due}}</p> &nbsp;
@@ -70,7 +71,7 @@
 					<div class="notification-list_content">
 						
 						<div class="notification-list_detail">
-							<h3 class="text-muted" data-value='{{this._id}}'> {{this.title}}</h3> &nbsp;
+							<h3 class="text-muted" data-value='{{this._id}}'> {{this.name}}</h3> &nbsp;
 							<p class="text-muted" data-value='{{this._id}}'>Task ID : {{this.id}}</p> &nbsp;
 							<p class="text-muted">Created At : {{this.date_of_assigned}}</p> &nbsp;
 							<p class="text-muted">Due Date : {{this.date_of_due}}</p> &nbsp;

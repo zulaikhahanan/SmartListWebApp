@@ -22,7 +22,7 @@ router.get('/account', ensureAuthenticated, (req,res) => {
         else{
                     res.render('account', 
                     {
-                        title: 'SmartList',
+                        title: 'SmartList - User Account',
                         username: results.username,
                         fullname: results.fullname,
                         profilepic: results.profilepic,

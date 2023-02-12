@@ -1,50 +1,44 @@
 <div class="container">
 			<h4 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h4>
 		
-<h4 class="m-b-50 heading-line">Incomplete Tasks</i></h4>
- <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
-   {{#each incompletetask}}
-			<div class="notification-ui_dd-content">
-				
-				<div class="notification-list notification-list--unread">
-					<div class="notification-list_content">
-						
-						<div class="notification-list_detail">
-							<h3 class="text-muted" data-value='{{this._id}}'> {{this.title}}</h3> &nbsp;
-							<p class="text-muted" data-value='{{this._id}}'>Task ID : {{this.id}}</p> &nbsp;
-							<p class="text-muted">Created At : {{this.date_of_assigned}}</p> &nbsp;
-							<p class="text-muted">Due Date : {{this.date_of_due}}</p> &nbsp;
-							<p class="text-muted">Description: {{this.description}}</p> &nbsp;
-							<p class="text-muted">Type: {{this.type}}</p> &nbsp;
-							<p class="text-muted">Completion: {{this.status}}</p> &nbsp;
-						</div>
-					</div>
-			
-				</div>
-		</div>
-		 {{/each}}
-	&nbsp;
-<h4 class="m-b-50 heading-line">Completed Tasks</h4>
+
+<h4 class="m-b-50 heading-line">Tasks</h4>
 
 	 <div class="container"><h3>{{#if completetask}}{{else}}{{/if}}</h3></div>
-   {{#each completetask}}
-			<div class="notification-ui_dd-content">
+	{{#if completetask}}{{else}}{{/if}}
+		 {{#each completetask}}
+		 	<div class="notification-ui_dd-content">
 				
 				<div class="notification-list notification-list--unread">
 					<div class="notification-list_content">
 						
 						<div class="notification-list_detail">
-							<h3 class="text-muted" data-value='{{this._id}}'> {{this.title}}</h3> &nbsp;
-							<p class="text-muted" data-value='{{this._id}}'>Task ID : {{this.id}}</p> &nbsp;
-							<p class="text-muted">Created At : {{this.date_of_assigned}}</p> &nbsp;
-							<p class="text-muted">Due Date : {{this.date_of_due}}</p> &nbsp;
-							<p class="text-muted">Description: {{this.description}}</p> &nbsp;
-							<p class="text-muted">Type: {{this.type}}</p> &nbsp;
-							<p class="text-muted">Completion: {{this.status}}</p> &nbsp;
-						</div>
+							
+							<p class="text-muted" data-value='{{this._id}}'><b>{{this.user.username}} </b> Completed The Task By Title <b>{{this.name}}</b> Created At <b>{{this.date_of_assigned}}</b> </p> &nbsp;
 					</div>
 			
 				</div>
 		</div>
-		 {{/each}}
+			</div>
+	
+		  {{/each}}
+		
+	<div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
+	{{#if incompletetask}}{{else}}{{/if}}
+		 {{#each incompletetask}}
+		 	<div class="notification-ui_dd-content">
+				
+				<div class="notification-list notification-list--unread">
+					<div class="notification-list_content">
+						
+							<div class="notification-list_detail">
+							
+							<p class="text-muted" data-value='{{this._id}}'><b>{{this.user.username}} </b> Created The Task By Title <b>{{this.name}}</b> With Upcoming Due Date At <b>{{this.date_of_due}}</b> </p> &nbsp;
+					</div>
+			
+				</div>
+		</div>
+			</div>
+		  {{/each}}
+		
 </div>

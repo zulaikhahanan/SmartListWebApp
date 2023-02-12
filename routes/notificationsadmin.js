@@ -7,10 +7,8 @@ const Acct = require('../models/accounts');
 const Tasks = require('../models/tasks');
 
 
-//Get To Notification Page
-
-
-router.get('/notifications', ensureAuthenticated, (req,res) => {
+//Get To  Admin Notification Page
+router.get('/notificationsadmin', ensureAuthenticated, (req,res) => {
     
   const _id = ObjectID(req.session.passport.user);
 
@@ -31,7 +29,8 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
           profilepic: results.profilepic,
           fullname: results.fullname,
           incompletetask:Incomplete,
-          completetask:Completed
+          completetask:Completed,
+          taskList:taskList
         
         });
       })

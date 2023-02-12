@@ -130,37 +130,42 @@ label.light {
     <body>
       <div class="row">
     <div class="col-md-12">
-      <form action="/mytask" method="GET">
+      <form action="/admin/managetasks" method="GET">
       
         
         <fieldset>
         
-          <legend><span class="number"> <i class="fa fa-file w3-xxlarge"></i></span> View Task Details</legend>
+          <legend><centre>View Task Details</centre> </legend>
            
-           <label for="title">Reference ID</label>
-          <input type="text" id="title" name="title" value="{{this.id}}">
+           <label for="id">Reference ID</label>
+          <input type="text" id="id" name="id" value="{{this.id}}">
 
-          <label for="title">Creator</label>
-          <input type="text" id="title" name="title" value="{{this.username}}">
+          <label for="_id">Creator ID</label>
+          <input type="text" id="_id" name="_id" value="{{this.user._id}}">
 
-          <label for="title">Title</label>
-          <input type="text" id="title" name="title" value="{{this.title}}">
         
-         <label for="description">Description </label>
-          <input type="text" id="description" name="title" value=" {{this.description}}">
         
-         <label for="status">Status </label>
-          <input type="text" id="status" name="status" value=" {{this.status}}">
-
-          <label for="status">Type</label>
-          <input type="text" id="status" name="status" value=" {{this.type}}">
+         <label for="email">Title </label>
+          <input type="text" id="description" name="name" value=" {{this.name}}">
+    
       
+             <label for="phonenumber">Description</label>
+          <input type="text" id="phonenumber" name="phonenumber"  value="{{this.description}}">
 
-          <label for="date_of_due">Due Date</label>
-          <input type="text" id="date_of_due" name="date_of_due"  value="{{this.date_of_due}}">
+          <label for="instituteName">Status</label>
+          <input type="text" id="instituteName" name="instituteName"  value="{{this.status}}">
        
-           <label for="date_of_assigned">Assigned Date</label>
-          <input type="text" id="date_of_assigned" name="date_of_assigned"  value="{{this.date_of_assigned}}">
+          <label for="pw1">Type</label>
+          <input type="text" id="pw1" name="pw1"  value="{{this.type}}">
+
+          <label for="bio">Due Date</label>
+          <input type="text" id="bio" name="bio"  value="{{this.date_of_due}}">
+
+            <label for="address">Created Date</label>
+          <input type="text" id="address" name="address"  value="{{this.date_of_assigned}}">
+
+        
+       
        
           
      
@@ -168,7 +173,7 @@ label.light {
   
         <button type="submit">Back</button>
         
-       </form>
+    
         </div>
       </div>
       

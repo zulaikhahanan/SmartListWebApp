@@ -41,9 +41,9 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
 
   Tasks.getItemById(id, function(results){
     console.log(results)
-    res.render('viewTask', {title: 'SmartList - Update My Task',
+    res.render('viewTaskAdmin', {title: 'SmartList - Update My Task',
         id:results.id,
-        title: results.title,
+        name: results.name,
         type:  results.type,
         description : results.description,
         date_of_due : results.date_of_due,
