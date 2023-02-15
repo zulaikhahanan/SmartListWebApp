@@ -22,7 +22,7 @@
                 <tr>
                   
                   <th scope="col">Title</th>
-                    <th scope="col">Created Date</th>
+                    <th scope="col">Created At</th>
                   <th scope="col">Type</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Description</th>
@@ -36,9 +36,9 @@
               <tbody>
           <tr class="fw-normal">
               {{#each incompletetask}}
-                  <th>
+                  <td class="align-middle">
                          <span class='orderno' data-value='{{this._id}}'>{{this.name}}</span>
-                  </th>
+                  </td>
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
                   </td>
@@ -124,9 +124,9 @@
               <tbody>
                           <tr class="fw-normal">
               {{#each completetask}}
-                  <th>
+                  <td class="align-middle">
                          <span class="ms-2"  data-value='{{this._id}}'>{{this.name}}</span>
-                  </th>
+                  </td>
                   <td class="align-middle">
                     <span>{{this.date_of_assigned}}</span>
                   </td>
