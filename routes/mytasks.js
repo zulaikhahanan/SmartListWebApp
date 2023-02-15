@@ -6,9 +6,9 @@ const ObjectID = require('mongodb').ObjectID;
 const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks=require('../models/tasks');
-const accountSid = 'ACbff67be10197906a42ab3309a1a886ee'; 
-const authToken = 'b95e8813f28648830a563b5edd066fa2'; 
-const client = require('twilio')(accountSid, authToken); 
+//const accountSid = 'ACbff67be10197906a42ab3309a1a886ee'; 
+//const authToken = 'b95e8813f28648830a563b5edd066fa2'; 
+//const client = require('twilio')(accountSid, authToken); 
 
 
 //Get Task Page
@@ -77,11 +77,11 @@ router.post('/createTask',async (req, res, next) => {
 
       const msg = 'You Have Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
     
-    client.messages.create({
-      from: 'whatsapp:+14155238886',
-      to: 'whatsapp:+60146669736',
-     body: msg
-   });
+    //client.messages.create({
+     // from: 'whatsapp:+14155238886',
+     //to: 'whatsapp:+60146669736',
+     //body: msg
+  // });
 
 });
  
