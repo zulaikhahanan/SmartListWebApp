@@ -36,7 +36,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
 // Handlebars
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
-app.engine('hbs', exphbs({
+app.engine('hbs',exphbs.engine({
     extname: 'hbs',
     //defaultview: 'main',
     layoutsDir: __dirname + '/views/layouts/',
