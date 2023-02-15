@@ -76,11 +76,11 @@ router.post('/createTask',async (req, res, next) => {
 
       const msg = 'You Have One Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
     
-     // client.messages.create({
-       // from: 'whatsapp:+14155238886',
-        //to: 'whatsapp:+60146669736',
-       // body: msg
-     // });
+      client.messages.create({
+       from: 'whatsapp:+14155238886',
+       to: 'whatsapp:+60146669736',
+       body: msg
+      });
 
 });
  
