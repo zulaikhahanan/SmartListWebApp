@@ -7,7 +7,6 @@ const Acct = require('../models/accounts');
 const Tasks = require('../models/tasks');
 
 
-
 //Get To Notification Page
 router.get('/notifications', ensureAuthenticated, (req,res) => {
     
@@ -31,12 +30,9 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
           completetask:Completed
         
         });
-
-        
       })
   })
 })
-
 
 
 module.exports = router;

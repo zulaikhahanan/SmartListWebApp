@@ -14,8 +14,6 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 require('./config/passport')(passport);
 
-
-
 // Statics
 app.use(express.static('assets'));
 app.use(express.static(__dirname + '/public'));
@@ -36,7 +34,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
 // Handlebars
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
-app.engine('hbs',exphbs.engine({
+app.engine('hbs', exphbs({
     extname: 'hbs',
     //defaultview: 'main',
     layoutsDir: __dirname + '/views/layouts/',
@@ -103,9 +101,8 @@ app.use('/admin', require('./routes/manageUsers'));
 app.use('/admin', require('./routes/manageTasks'));
 app.use('/admin', require('./routes/adminProf'));
 
-
 // Port
-const port = envPort || 8080;
+const port = envPort || 8000;
 
 app.listen(port, () => {
     console.log(`Server listening at ${port}`);

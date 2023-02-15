@@ -70,8 +70,6 @@ router.post('/createTask',async (req, res, next) => {
     
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
-
-      
 });
 
 
