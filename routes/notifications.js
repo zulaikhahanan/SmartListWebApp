@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const ObjectID = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks = require('../models/tasks');
+const accountSid = 'ACbff67be10197906a42ab3309a1a886ee'; 
+const authToken = 'b95e8813f28648830a563b5edd066fa2';
+const client = require('twilio')(accountSid, authToken); 
 
 
 //Get To Notification Page
@@ -30,9 +33,12 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
           completetask:Completed
         
         });
+
+        
       })
   })
 })
+
 
 
 module.exports = router;

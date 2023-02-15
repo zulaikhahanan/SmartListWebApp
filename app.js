@@ -14,6 +14,8 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 require('./config/passport')(passport);
 
+
+
 // Statics
 app.use(express.static('assets'));
 app.use(express.static(__dirname + '/public'));
@@ -100,6 +102,7 @@ app.use('/admin', require('./routes/adminpage'));
 app.use('/admin', require('./routes/manageUsers'));
 app.use('/admin', require('./routes/manageTasks'));
 app.use('/admin', require('./routes/adminProf'));
+
 
 // Port
 const port = envPort || 8080;
