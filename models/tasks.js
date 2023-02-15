@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const schema = new mongoose.Schema({
 
     status: {
@@ -138,3 +139,5 @@ exports.getItemById = function(_id, next){
         next(results)
     })
 }
+
+//Notifications Function

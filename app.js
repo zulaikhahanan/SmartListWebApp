@@ -39,21 +39,7 @@ app.engine('hbs', exphbs({
     //defaultview: 'main',
     layoutsDir: __dirname + '/views/layouts/',
     partialsDir: __dirname + '/views/partials/',
-    handlebars: allowInsecurePrototypeAccess(hbs),
-    helpers: 
-    {
-        formatDate: function(datetime) 
-        {
-            if (datetime !== null) {
-                format = "MMMM DD YYYY";
-                return moment(datetime).format(format);
-            }
-            else {
-                return "";
-            }
-        }
-
-    }
+    handlebars: allowInsecurePrototypeAccess(hbs)
 }))
 
 app.set('view engine', 'hbs');
@@ -107,3 +93,4 @@ const port = envPort || 8000;
 app.listen(port, () => {
     console.log(`Server listening at ${port}`);
 });
+

@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 const ObjectID = require('mongodb').ObjectID;
 const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
-const Tasks = require('../models/tasks');
+const Tasks=require('../models/tasks');
+const accountSid = 'ACbff67be10197906a42ab3309a1a886ee'; 
+const authToken = 'b95e8813f28648830a563b5edd066fa2'; 
+const client = require('twilio')(accountSid, authToken); 
 
 
 //Get Task Page
@@ -68,9 +71,20 @@ router.post('/createTask',async (req, res, next) => {
       var name= req.body.name;
       var type = req.body.type;
     
+    
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
+
+      const msg = 'You Have One Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
+    
+      client.messages.create({
+        from: 'whatsapp:+14155238886',
+        to: 'whatsapp:+60146669736',
+        body: msg
+      });
+
 });
+ 
 
 
 
@@ -126,11 +140,8 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
 
 
         });
-    
-  
-  })
- // res.send(id);
-});
+   })
+ });
 
 
 //Change Status to Complete
@@ -152,7 +163,6 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   Tasks.updateStatus(id, status);
   res.redirect('/mytask');
 });
-
 
 
 
