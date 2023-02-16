@@ -30,7 +30,8 @@ const schema = new mongoose.Schema({
     },
     type: {
         type: String
-    }
+    },
+
 });
 
 var Tasks = mongoose.model('tasks', schema);
