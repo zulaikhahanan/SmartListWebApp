@@ -26,7 +26,7 @@ const schema = new mongoose.Schema({
         type: String,
         required:true
     },
-    
+
     name: {
         type: String,
         required:true
@@ -127,7 +127,7 @@ exports.update = function(id, date_of_due, description, name, type){
     }).then( x => {console.log("Update Success")});
 }
 
-//Change Completion Status
+//Change Completion Status to Incomplete or Completed
 exports.updateStatus = function(id, status){
 
     Tasks.updateOne({ "_id" : id }, 

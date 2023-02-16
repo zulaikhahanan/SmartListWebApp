@@ -167,15 +167,6 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   res.redirect('/mytask');
 });
 
-//Whatsapp Notification Reminding Functionality
-
-
-
-
-
-
-
-
 
 module.exports = router;
 
