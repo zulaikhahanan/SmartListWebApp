@@ -6,8 +6,7 @@ const ObjectID = require('mongodb').ObjectID;
 const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks=require('../models/tasks');
-//const { accountSid, authToken } = require('../config/configNoti');
-//const client = require('twilio')(accountSid, authToken); 
+ 
 
 
 //Get Task Page
@@ -73,18 +72,7 @@ router.post('/createTask',async (req, res, next) => {
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 
-      //Send Notification
-     // const msg = 'You Have Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
-    
-    //  client.messages 
-     // .create({ 
-     //    body: msg,
-      //   from: 'whatsapp:+14155238886',       
-      //   to: 'whatsapp:+60146669736' 
-     //  }) 
-     // .then(message => console.log(message.sid));
-      
-
+  
 });
  
 
