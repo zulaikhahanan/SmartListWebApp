@@ -87,8 +87,6 @@ router.post('/createTask',async (req, res, next) => {
 });
  
 
-
-
 //Update Task
 router.post('/updateTask', function(req, res, next) {
 
@@ -138,8 +136,6 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
           username: req.user.username,
           profilepic: req.user.profilepic,
           profilepic: results.profilepic
-
-
         });
    })
  });
