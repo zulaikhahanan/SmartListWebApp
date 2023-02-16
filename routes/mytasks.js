@@ -70,17 +70,16 @@ router.post('/createTask',async (req, res, next) => {
       var name= req.body.name;
       var type = req.body.type;
     
-    
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 
-     const msg = 'You Have Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
+      const msg = 'You Have Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
     
-    //client.messages.create({
-    //from: 'whatsapp:+14155238886',
-   // to: 'whatsapp:+60146669736',
-   // body: msg
- //})  .then(message => console.log(message.sid));
+      client.messages.create({
+      from: 'whatsapp:+14155238886',
+      to: 'whatsapp:+60146669736',
+      body: msg
+      })  .then(message => console.log(message.sid));
 
 });
  
