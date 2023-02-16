@@ -23,14 +23,25 @@ const schema = new mongoose.Schema({
         required: true,
     },
     description: {
-        type: String
+        type: String,
+        required:true
     },
+    
     name: {
-        type: String
+        type: String,
+        required:true
     },
+
     type: {
-        type: String
+        type: String,
+        required:true
     },
+
+    isReminded: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 
 });
 
@@ -38,7 +49,7 @@ var Tasks = mongoose.model('tasks', schema);
 
 
 //The User Create Task
-exports.create = function(status, date_of_due, description, name, type,user){
+exports.create = function(status, date_of_due, description, name, type,user,isReminded){
     
   const task = new Tasks({
             status,
@@ -46,7 +57,8 @@ exports.create = function(status, date_of_due, description, name, type,user){
             description,
             name,
             type,
-            user
+            user,
+            isReminded
     });
    task.save()
 }
