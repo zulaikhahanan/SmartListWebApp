@@ -73,6 +73,7 @@ router.post('/createTask',async (req, res, next) => {
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 
+      //Send Notification
       const msg = 'You Have Task Named '+ req.body.name +' With Upcoming Due Date On ' + req.body.date_of_due;
     
       client.messages.create({
