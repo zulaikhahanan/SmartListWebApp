@@ -10,8 +10,7 @@ const Tasks=require('../models/tasks');
 const moment = require('moment');
 const dotenv = require('dotenv');
 dotenv.config();
-//const {  accountSid,authToken } = require('../config/configNoti');
-//const client = require('twilio')(accountSid, authToken); 
+
  
 
 
@@ -74,22 +73,23 @@ router.post('/createTask',async (req, res, next) => {
       var description = req.body.description;
       var name= req.body.name;
       var type = req.body.type;
-      
-      
-    
       Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 
-        //Send Notification to the User After Task Created 
-       // const msg = ' Upcoming Task Due Date On '+req.body.date_of_due + ' For Task Named '+req.body.name;
+       //Send Notification to the User After Task Created
 
-       //  client.messages 
-      //  .create({ 
-       //    body:msg, 
-       //    from: 'whatsapp:+14155238886',       
-       //    to: 'whatsapp:+60146669736' 
-     //   }) 
-       // .then(message => console.log(message.sid)) ;
+       const msg = ' Upcoming Task Due Date On '+req.body.date_of_due + ' For Task Named '+req.body.name;
+
+       const accountSid = process.env.ACCOUNT_SID 
+       const authToken = process.env.AUTH_TOKEN
+       const client = require('twilio')(accountSid, authToken);
+        client.messages 
+       .create({ 
+         body:msg, 
+         from: 'whatsapp:+14155238886',       
+         to: 'whatsapp:+60146669736' 
+      }) 
+        .then(message => console.log(message.sid)) ;
 });
  
 
