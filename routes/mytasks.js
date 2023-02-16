@@ -6,8 +6,8 @@ const ObjectID = require('mongodb').ObjectID;
 const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks=require('../models/tasks');
-const { accountSid, authToken } = require('../config/configNoti');
-const client = require('twilio')(accountSid, authToken); 
+//const { accountSid, authToken } = require('../config/configNoti');
+//const client = require('twilio')(accountSid, authToken); 
 
 
 //Get Task Page
