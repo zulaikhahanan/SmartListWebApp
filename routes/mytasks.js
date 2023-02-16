@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
+const cors = require("cors")
 const ObjectID = require('mongodb').ObjectID;
 const ObjectId = require('mongodb').ObjectID;
 const Acct = require('../models/accounts');
 const Tasks=require('../models/tasks');
+const dotenv = require('dotenv');
+dotenv.config();
 //const {  accountSid,authToken } = require('../config/configNoti');
 //const client = require('twilio')(accountSid, authToken); 
  
@@ -161,7 +164,7 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   res.redirect('/mytask');
 });
 
-
+//Whatsapp Notification Reminding Functionality
 
 module.exports = router;
 
