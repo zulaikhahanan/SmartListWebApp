@@ -10,7 +10,7 @@ const Acct = require('../models/accounts');
 router.get('/manageusers', ensureAuthenticated, (req, res, next) => {
 
   Acct.getAll(function(results){
-      res.render('manageUser', {title: 'Admin - Manage Users',
+      res.render('manageUser', {title: 'SmartList Admin - Manage Users',
       fullname: req.user.fullname,
       profilepic: req.user.profilepic,
       users: results
@@ -22,7 +22,7 @@ router.get('/manageusers', ensureAuthenticated, (req, res, next) => {
 router.get('/addUser', ensureAuthenticated, (req, res, next) => {
 
   Acct.getAll(function(results){
-      res.render('addUser', {title: 'Admin - Add New User',
+      res.render('addUser', {title: 'SmartList Admin - Add New User',
       fullname: req.user.fullname,
       profilepic: req.user.profilepic,
  
@@ -75,7 +75,7 @@ router.get('/viewUser/:_id', ensureAuthenticated,(req, res) =>
 
   Acct.getUserById(id, function(results){
    console.log(results)
-    res.render('viewUser', {title: 'SmartList - Admin View User',
+    res.render('viewUser', {title: 'SmartList Admin - View User',
           id:results.id,
           username: results.username,
           fullname:  results.fullname,

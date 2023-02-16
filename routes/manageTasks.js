@@ -10,7 +10,7 @@ const Tasks = require('../models/tasks');
 router.get('/managetasks', ensureAuthenticated, (req, res, next) => {
 
   Tasks.getAll(function(results){
-      res.render('manageTask', {title: 'Admin - Manage Tasks',
+      res.render('manageTask', {title: 'SmartList Admin - Manage Tasks',
       fullname: req.user.fullname,
       username: req.user.username,
       profilepic: req.user.profilepic,
@@ -41,7 +41,7 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
 
   Tasks.getItemById(id, function(results){
     console.log(results)
-    res.render('viewTaskAdmin', {title: 'SmartList - Update My Task',
+    res.render('viewTaskAdmin', {title: 'SmartList Admin - View Task',
         id:results.id,
         name: results.name,
         type:  results.type,
