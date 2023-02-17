@@ -42,6 +42,10 @@ const schema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    
+    remindAt: {
+        type: String
     }
 
 });
