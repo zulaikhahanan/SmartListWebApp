@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Consists of Status, User, Date of Assigned, Description, Title @ Name,Type, IsReminded
 
 const schema = new mongoose.Schema({
 
@@ -153,4 +154,3 @@ exports.getItemById = function(_id, next){
     })
 }
 
-//Notifications Function

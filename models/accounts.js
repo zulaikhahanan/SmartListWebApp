@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+//Consists of Profile Pic, Email, Password, Full Name, User Name, Picture, Phone Number, Address, Intitution Name, Bio, IfAdmin
+
 const schema = new mongoose.Schema({
     profilepic: {
         type: String,
@@ -46,8 +48,13 @@ const schema = new mongoose.Schema({
     }
 });
 
+//Model for Account Is For User of the System Which Are Admin and Student
 var Acct = mongoose.model('accounts', schema);
 
+
+//Function 
+
+//Detect If There Is Same Email In the System
 exports.ifExists = function(email){
     Acct.findOne({ email: email})
     .then( exists => {
@@ -58,6 +65,8 @@ exports.ifExists = function(email){
     })
 }
 
+
+//Create the User In the System
 exports.create = function(fullname, username, email, phonenumber, pw1, pw2, address, bio,instituteName, ifAdmin)
 {
     const newUser = new Acct({
@@ -72,6 +81,7 @@ exports.create = function(fullname, username, email, phonenumber, pw1, pw2, addr
         ifAdmin
     });
 
+//Encyrpt the Password that Created by the User
     bcrypt.genSalt(10, (err, salt) => 
         bcrypt.hash(newUser.pw1, salt, (err, hash) => {
             if(err) throw err;
@@ -82,6 +92,7 @@ exports.create = function(fullname, username, email, phonenumber, pw1, pw2, addr
         }))
 }
 
+//Find the User By Id
 exports.getById = function(id, next){
     Acct.findOne({"_id":id}, (err, results) => {
         if (err) throw err;
@@ -89,6 +100,7 @@ exports.getById = function(id, next){
     })
 }
 
+//Export the Email of the User Using the Passport Dependency
 exports.passport = function(email){
 
     return Acct.findOne({ email }, (err, results) => {
@@ -96,6 +108,7 @@ exports.passport = function(email){
     })
 }
 
+//Export the Id of the User Using the Passport Dependency
 exports.passportId = function(id, doneParam){
 
     Acct.findById(id, function(err, user) {
@@ -103,6 +116,7 @@ exports.passportId = function(id, doneParam){
     });
 }
 
+//Update the Enable Attributes Such As Phone Number, Address, Bio, Institution Name
 exports.update = function(id, phonenumber, address, bio, instituteName){
 
     Acct.updateOne({ "_id" : id }, 
@@ -115,6 +129,7 @@ exports.update = function(id, phonenumber, address, bio, instituteName){
     }).then( x => {console.log("Update Success")});
 }
 
+//Update the Profile Picture
 exports.updatePicture = function(id, picture){
     Acct.updateOne({ "_id" : id }, 
     { "$set" : 
@@ -122,6 +137,7 @@ exports.updatePicture = function(id, picture){
     }).then( x => {console.log("Update Success")});
 }
 
+//Update the Password
 exports.updatePassword = function(id, hash){
     Acct.updateOne({ "_id" : id }, 
     { "$set" : 
@@ -131,6 +147,7 @@ exports.updatePassword = function(id, hash){
     }).then( x => {console.log("Update Success")});
 }
 
+//Delete the User from the System
 exports.delete = function(id){
     Acct.deleteOne({"_id": id}, function(err, result) {
        if (err) throw err;
@@ -138,9 +155,7 @@ exports.delete = function(id){
     console.log("Delete User")
 }
 
-
-
-
+//Get All the User In the System
 exports.getAll = function(next){
     Acct.find({}, (err, users) => {
 
@@ -152,6 +167,7 @@ exports.getAll = function(next){
     });
 }
 
+//Get the User By The Id
 exports.getUserById = function(_id, next){
     Acct.findOne({_id}, (err, results) => {
         if (err)  throw err;
@@ -159,6 +175,7 @@ exports.getUserById = function(_id, next){
     })
 }
 
+//Admin Update The User Details
 exports.adminUpdate = function(_id, username, fullname, email,address,instituteName,bio,phonenumber){
 
     Acct.updateOne({ _id}, 
