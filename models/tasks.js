@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Consists of Status, User, Date of Assigned, Description, Title @ Name,Type, IsReminded
+//Consists of Status, User, Date of Assigned, Description, Title @ Name,Type, IsReminded, remindAt
 
 const schema = new mongoose.Schema({
 
@@ -38,15 +38,6 @@ const schema = new mongoose.Schema({
         required:true
     },
 
-    isReminded: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    
-    remindAt: {
-        type: String
-    }
 
 });
 
@@ -54,7 +45,7 @@ var Tasks = mongoose.model('tasks', schema);
 
 
 //The User Create Task
-exports.create = function(status, date_of_due, description, name, type,user,isReminded){
+exports.create = function(status, date_of_due, description, name, type,user){
     
   const task = new Tasks({
             status,
@@ -63,7 +54,7 @@ exports.create = function(status, date_of_due, description, name, type,user,isRe
             name,
             type,
             user,
-            isReminded
+            
     });
    task.save()
 }
@@ -141,6 +132,18 @@ exports.updateStatus = function(id, status){
       }
     }).then( x => {console.log("Update Success")});
 }
+
+//Change the Reminder Status 
+exports.updateReminder = function(id, isReminded){
+
+    Tasks.updateOne({ "_id" : id }, 
+    { "$set" : 
+      {true: isReminded
+    
+      }
+    }).then( x => {console.log("Update Success")});
+}
+
 
 //Delete Tasks
 exports.delete = function(id){

@@ -54,13 +54,11 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
         username: req.user.username,
         profilepic: req.user.profilepic,
         profilepic: results.profilepic,
-        fullname :req.user.fullname
-            
+        fullname :req.user.fullname,
         });
     
   
   })
- // res.send(id);
 });
 
 // Admin Change Status to Completed

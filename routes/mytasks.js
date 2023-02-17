@@ -78,7 +78,7 @@ router.post('/createTask',async (req, res, next) => {
 
        //Send Notification to the User After Task Created
 
-       const msg = ' Upcoming Task Due Date On '+req.body.date_of_due + ' For Task Named '+req.body.name;
+       const msg = 'Thank You For Using SmartList Web Application !'+"\n" +"\n"+'Upcoming Task Due Date On '+req.body.date_of_due + ' For Task Named '+req.body.name;
 
        const accountSid = process.env.ACCOUNT_SID 
        const authToken = process.env.AUTH_TOKEN
@@ -167,7 +167,7 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   res.redirect('/mytask');
 });
 
-//Whatsapp Message Reminder
+
 module.exports = router;
 
 
