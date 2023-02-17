@@ -33,7 +33,7 @@ router.get('/addUser', ensureAuthenticated, (req, res, next) => {
 // Admin create the New User
 router.post('/addUser',ensureAuthenticated, (req,res) => {
 
-  const { fullname, username, email, phonenumber, pw1, address, bio, instituteName, ifAdmin } = req.body;
+  const { fullname, username, email, phonenumber, pw1,pw2, address,  instituteName, bio } = req.body;
 
   if( Acct.ifExists(email) )
   {
@@ -42,7 +42,7 @@ router.post('/addUser',ensureAuthenticated, (req,res) => {
       })
   }
   else{
-      Acct.create(fullname, username, email, phonenumber, pw1, address, bio, instituteName, ifAdmin);
+      Acct.create(fullname, username, email, phonenumber, pw1,pw2, address,instituteName,  bio);
       req.flash("msg", "Registration of the New User is Successful")
       res.redirect('/admin/manageusers');
   }
