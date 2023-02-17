@@ -6,14 +6,14 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const hbs = require('handlebars');
 const exphbs = require('express-handlebars');
+const cors = require("cors")
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const moment = require('moment');
 const { envPort, dbURL, sessionKey } = require('./config/config');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
-app.use(express.json())
-app.use(express.urlencoded())
+app.use(cors());
 require('./config/passport')(passport);
 
 // Statics
