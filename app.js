@@ -15,6 +15,8 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 app.use(cors());
 require('./config/passport')(passport);
+var date_time = new Date();
+console.log('SmartList Web Application Currently Working Now :'+date_time);
 
 // Statics
 app.use(express.static('assets'));

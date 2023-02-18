@@ -16,6 +16,7 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
     
       Tasks.getById(_id, function(taskList){
         console.log(taskList)
+        const now = new Date();
         var Completed = taskList.filter(obj => {
           return obj.status !== "Incomplete";
         })
@@ -27,7 +28,8 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
           username: results.username,
           profilepic: results.profilepic,
           incompletetask:Incomplete,
-          completetask:Completed
+          completetask:Completed,
+          now:now
         
         });
       })

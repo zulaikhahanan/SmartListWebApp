@@ -55,6 +55,7 @@ router.get('/viewTask/:_id', ensureAuthenticated,(req, res) =>
         profilepic: req.user.profilepic,
         profilepic: results.profilepic,
         fullname :req.user.fullname,
+        remindAt:results.remindAt
         });
     
   

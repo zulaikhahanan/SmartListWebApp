@@ -36,7 +36,7 @@ const schema = new mongoose.Schema({
     type: {
         type: String,
         required:true
-    },
+    }
 
 
 });
@@ -53,8 +53,7 @@ exports.create = function(status, date_of_due, description, name, type,user){
             description,
             name,
             type,
-            user,
-            
+            user
     });
    task.save()
 }
@@ -129,17 +128,6 @@ exports.updateStatus = function(id, status){
     Tasks.updateOne({ "_id" : id }, 
     { "$set" : 
       {"status" : status
-      }
-    }).then( x => {console.log("Update Success")});
-}
-
-//Change the Reminder Status 
-exports.updateReminder = function(id, isReminded){
-
-    Tasks.updateOne({ "_id" : id }, 
-    { "$set" : 
-      {true: isReminded
-    
       }
     }).then( x => {console.log("Update Success")});
 }
