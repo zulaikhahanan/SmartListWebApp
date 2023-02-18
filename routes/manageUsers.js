@@ -96,7 +96,7 @@ router.get('/viewUser/:_id', ensureAuthenticated,(req, res) =>
 });
 
 //Update User
-router.post('/updateUser/:_id', function(req, res, next) {
+router.post('/updateUser/:_id',ensureAuthenticated, function(req, res, next) {
 
     username = req.body.username;
     fullname = req.body.fullname;
@@ -115,7 +115,7 @@ router.post('/updateUser/:_id', function(req, res, next) {
   
 
 //Add New User
-router.post('/addUser', (req,res) => {
+router.post('/addUser',ensureAuthenticated, (req,res) => {
 
   const { fullname, username, email, phonenumber, pw1, pw2, address, bio, instituteName, ifAdmin } = req.body;
 
@@ -132,5 +132,8 @@ router.post('/addUser', (req,res) => {
   }
   
 });
+
+
+
 
 module.exports = router;

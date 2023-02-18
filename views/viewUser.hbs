@@ -130,7 +130,7 @@ label.light {
     <body>
       <div class="row">
     <div class="col-md-12">
-      <form action="/admin/manageUsers" method="GET">
+      <form action="/admin/updateUser/{{ this.id }}" method="POST">
       
         
         <fieldset>
@@ -170,10 +170,14 @@ label.light {
      
         </fieldset>
   
-        <button type="submit">Back</button>
-        
-    
+        <button type="submit">Edit This User</button>
+        </form>
+         <form  action="/admin/manageUsers" method="GET">
+            <button type="submit">Back</button>
+        </form>
         </div>
+       
+
       </div>
 
     </body>
