@@ -6,15 +6,15 @@
     <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a> &nbsp;
      
 
-  &nbsp;
+  &nbsp; &nbsp;
 
  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
-
+ <h2 class="mb-0"><i ></i> Academic Type Tasks</h2> &nbsp;
         <div class="card">
           <div class="card-header p-3">
-            <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
+            <div class="container"><h3>{{#if incompletetaskandacademic}}{{else}} {{/if}}</h3></div>
             <h5 class="mb-0"><i ></i> Incomplete Tasks</h5>
           </div>
           <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
@@ -39,7 +39,7 @@
           <tr class="fw-normal">
            
         
-              {{#each incompletetask}}
+              {{#each incompletetaskandacademic}}
                   <td class="align-middle">
                          <span class='orderno' data-value='{{this._id}}'>{{this.name}}</span>
                   </td>
@@ -101,7 +101,7 @@
 
 &nbsp;
 
-<div class="container"><h3>{{#if completetask}}{{else}} {{/if}}</h3></div>
+<div class="container"><h3>{{#if completetaskandacademic}}{{else}} {{/if}}</h3></div>
         <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
@@ -129,7 +129,7 @@
               </thead>
               <tbody>
                           <tr class="fw-normal">
-              {{#each completetask}}
+              {{#each completetaskandacademic}}
                   <td class="align-middle">
                          <span class="ms-2"  data-value='{{this._id}}'>{{this.name}}</span>
                   </td>
@@ -187,5 +187,182 @@
   </div> 
 
 
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+ <h2 class="mb-0"><i ></i> Non-Academic Type Tasks</h2> &nbsp;
+        <div class="card">
+          <div class="card-header p-3">
+            <div class="container"><h3>{{#if incompletetaskandnonacademic}}{{else}} {{/if}}</h3></div>
+            <h5 class="mb-0"><i ></i> Incomplete Tasks</h5>
+          </div>
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
+
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Title</th>
+                    <th scope="col">Created Date</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">View</th>
+                  <th scope="col">Delete</th>
+                   <th scope="col">Completion</th>
+          
+                </tr>
+              </thead>
+              <tbody>
+          <tr class="fw-normal">
+           
+        
+              {{#each incompletetaskandnonacademic}}
+                  <td class="align-middle">
+                         <span class='orderno' data-value='{{this._id}}'>{{this.name}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_assigned}}</span>
+                  </td>
+                   <td class="align-middle">
+                    <span>{{this.type}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_due}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.description}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-danger">{{this.status}}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                  
+
+                 <form action="/viewTask/{{this.id}}" method="GET">
+								     <center><button type="submit"   class="fas fa-file text-success me-3"></button></center>  
+							    </form>
+
+                
+                  </td>
+                      <td class="align-middle">
+                  
+
+                  <form action="/deleteTask/{{this.id}}" method="post">
+								     <center><button type="submit" class="fas fa-trash-alt text-danger"></button></center>  </button>
+							    </form>
+
+
+                  </td>
+                      <td class="align-middle">
+            
+								       <form action="/changeStatusComplete/{{this.id}}" method="post">
+								       <center><button type="submit"  class="fas fa-check text-success"></button></center>
+							    </form>
+							   
+                      </td>
+
+                </tr>
+
+   {{/each}}
+      
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+&nbsp;
+
+<div class="container"><h3>{{#if completetaskandnonacademic}}{{else}} {{/if}}</h3></div>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+
+        <div class="card">
+          <div class="card-header p-3">
+            <h5 class="mb-0"><i ></i> Completed Tasks </h5>
+          </div>
+          <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
+
+            <table class="table mb-0">
+              <thead>
+                <tr>
+               
+                  <th scope="col">Title</th>
+                    <th scope="col">Created Date</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                    <th scope="col">View</th>
+                  <th scope="col">Delete</th>
+                   <th scope="col">Completion</th>
+               
+                </tr>
+              </thead>
+              <tbody>
+                          <tr class="fw-normal">
+              {{#each completetaskandnonacademic}}
+                  <td class="align-middle">
+                         <span class="ms-2"  data-value='{{this._id}}'>{{this.name}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_assigned}}</span>
+                  </td>
+                   <td class="align-middle">
+                    <span>{{this.type}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.date_of_due}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <span>{{this.description}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-success">{{this.status}}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                  
+
+                 <form action="/viewTask/{{this.id}}" method="GET">
+								       <center><button type="submit"   class="fas  fa-file  text-success me-3"></button></center>
+							    </form>
+
+                
+                  </td>
+                      <td class="align-middle">
+                  
+
+                  <form action="/deleteTask/{{this.id}}" method="post">
+								       <center><button type="submit" class="fas fa-trash-alt text-danger"></button></center> 
+							    </form>
+
+
+                  </td>
+                      <td class="align-middle">
+            
+								       <form action="/changeStatusIncomplete/{{this.id}}" method="post">
+								     <center> <button type="submit"  class="fas fa-times text-danger"></button></center>
+							    </form>
+							   
+                      </td>
+                </tr> 
+       {{/each}} 
+              </tbody>
+            </table>
+
+          </div>
+     
+        </div>
+
+      </div>
+    </div>
+  </div> 
 
 

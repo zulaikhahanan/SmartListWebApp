@@ -20,30 +20,31 @@ router.get('/mytask', ensureAuthenticated, (req,res) => {
     
       Tasks.getById(_id, function(taskList){
         console.log(taskList)
-        var Completed = taskList.filter(obj => {
-          return obj.status !== "Incomplete";
+        
+
+        var IncompleteAcademic = taskList.filter(obj => {
+          return obj.status === "Incomplete" && obj.type === "Academic";
         })
 
-        var Incomplete = taskList.filter(obj => {
-          return obj.status === "Incomplete";
+        var CompletedAcademic = taskList.filter(obj => {
+          return obj.status == "Completed" && obj.type === "Academic";
         })
 
-        var Academic = taskList.filter(obj => {
-          return obj.type == "Academic";
+        var IncompleteNonAcademic = taskList.filter(obj => {
+          return obj.type !== "Non Academic" && obj.status == "Incomplete";
         })
 
-        var NonAcademic = taskList.filter(obj => {
-          return obj.type !== "Academic";
+        var CompletedNonAcademic = taskList.filter(obj => {
+          return obj.type !== "Non Academic" && obj.status == "Completed";
         })
 
         res.render('tasks', {title: 'SmartList - My Tasks',
           username: results.username,
           profilepic: results.profilepic,
-          incompletetask:Incomplete,
-          completetask:Completed,
-          Academic : Academic,
-          NonAcademic : NonAcademic,
-          taskList :taskList
+          incompletetaskandacademic:IncompleteAcademic,
+          completetaskandacademic:CompletedAcademic,
+          incompletetaskandnonacademic : IncompleteNonAcademic,
+          completetaskandanoncademic : CompletedNonAcademic
         });
 
      
