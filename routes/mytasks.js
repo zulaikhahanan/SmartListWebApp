@@ -10,9 +10,6 @@ const moment = require('moment');
 const dotenv = require('dotenv');
 dotenv.config();
 
- 
-
-
 //Get Task Page
 router.get('/mytask', ensureAuthenticated, (req,res) => {
     
@@ -171,6 +168,7 @@ router.post('/changeStatusComplete/:_id', function(req, res, next) {
   let status = "Completed";
   Tasks.updateStatus(id, status);
   res.redirect('/mytask');
+  
 });
 
 //Change Status to Incomplete
@@ -178,7 +176,6 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   console.log(req.params._id);
   let id = ObjectId(req.params._id);
   let status = "Incomplete";
- 
   Tasks.updateStatus(id, status);
   res.redirect('/mytask');
 });
