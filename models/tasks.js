@@ -36,6 +36,10 @@ const schema = new mongoose.Schema({
     type: {
         type: String,
         required:true
+    },
+
+    remindAt:{
+        type:Date
     }
 
 
@@ -45,7 +49,7 @@ var Tasks = mongoose.model('tasks', schema);
 
 
 //The User Create Task
-exports.create = function(status, date_of_due, description, name, type,user){
+exports.create = function(status, date_of_due, description, name, type,user,remindAt){
     
   const task = new Tasks({
             status,
@@ -53,7 +57,8 @@ exports.create = function(status, date_of_due, description, name, type,user){
             description,
             name,
             type,
-            user
+            user,
+            remindAt
     });
    task.save()
 }

@@ -26,13 +26,39 @@ router.get('/mytask', ensureAuthenticated, (req,res) => {
         var Incomplete = taskList.filter(obj => {
           return obj.status === "Incomplete";
         })
+
         res.render('tasks', {title: 'SmartList - My Tasks',
           username: results.username,
           profilepic: results.profilepic,
           incompletetask:Incomplete,
           completetask:Completed
-        
         });
+
+        //Send Notification Based On the Upcoming Reminder Date
+        if(taskList){
+          taskList.forEach(tasks => {
+            const msg = 'SmartList Web Application'+"\n" +"\n"+'Upcoming Reminder For Task Named '+' With Due Date ';
+            const now = new Date()
+            if((new Date(tasks.remindAt) - now) < 0)
+             {
+              const accountSid = process.env.ACCOUNT_SID 
+              const authToken = process.env.AUTH_TOKEN
+              const client = require('twilio')(accountSid, authToken); 
+              client.messages 
+                  .create({ 
+                      body: msg, 
+                      from: 'whatsapp:+14155238886',       
+                      to: 'whatsapp:+60146669736'
+                  }) 
+                  .then(message => console.log(message.sid)) ;
+               
+                
+            }
+          })
+
+        }
+
+        //End of Send Notification
       })
   })
 })
@@ -70,8 +96,9 @@ router.post('/createTask',async (req, res, next) => {
       var description = req.body.description;
       var name= req.body.name;
       var type = req.body.type;
+      var remindAt = req.body.remindAt;
 
-      Tasks.create(status,date_of_due, description,name,type,user);
+      Tasks.create(status,date_of_due, description,name,type,user,remindAt);
       res.redirect('/mytask');
 
        //Send Notification to the User After Task Created
