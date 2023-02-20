@@ -10,6 +10,7 @@ const moment = require('moment');
 const dotenv = require('dotenv');
 dotenv.config();
 
+
 //Get Task Page
 router.get('/mytask', ensureAuthenticated, (req,res) => {
     
@@ -27,38 +28,25 @@ router.get('/mytask', ensureAuthenticated, (req,res) => {
           return obj.status === "Incomplete";
         })
 
+        var Academic = taskList.filter(obj => {
+          return obj.type == "Academic";
+        })
+
+        var NonAcademic = taskList.filter(obj => {
+          return obj.type !== "Academic";
+        })
+
         res.render('tasks', {title: 'SmartList - My Tasks',
           username: results.username,
           profilepic: results.profilepic,
           incompletetask:Incomplete,
-          completetask:Completed
+          completetask:Completed,
+          Academic : Academic,
+          NonAcademic : NonAcademic,
+          taskList :taskList
         });
 
-        //Send Notification Based On the Upcoming Reminder Date
-        if(taskList){
-          taskList.forEach(tasks => {
-            const msg = 'SmartList Web Application'+"\n" +"\n"+'Upcoming Reminder For Task Named '+' With Due Date ';
-            const now = new Date()
-            if((new Date(tasks.remindAt) - now) < 0)
-             {
-              const accountSid = process.env.ACCOUNT_SID 
-              const authToken = process.env.AUTH_TOKEN
-              const client = require('twilio')(accountSid, authToken); 
-              client.messages 
-                  .create({ 
-                      body: msg, 
-                      from: 'whatsapp:+14155238886',       
-                      to: 'whatsapp:+60146669736'
-                  }) 
-                  .then(message => console.log(message.sid)) ;
-               
-                
-            }
-          })
-
-        }
-
-        //End of Send Notification
+     
       })
   })
 })
@@ -80,7 +68,6 @@ router.get('/addTask', ensureAuthenticated, (req, res, next) => {
         address: results.address,
         bio: results.bio,
         instituteName: results.instituteName,
-        remindAt:results.remindAt,
         profilepic: results.profilepic
       })
   })
@@ -96,9 +83,9 @@ router.post('/createTask',async (req, res, next) => {
       var description = req.body.description;
       var name= req.body.name;
       var type = req.body.type;
-      var remindAt = req.body.remindAt;
+   
 
-      Tasks.create(status,date_of_due, description,name,type,user,remindAt);
+      Tasks.create(status,date_of_due, description,name,type,user);
       res.redirect('/mytask');
 
        //Send Notification to the User After Task Created
@@ -195,6 +182,7 @@ router.post('/changeStatusComplete/:_id', function(req, res, next) {
   let status = "Completed";
   Tasks.updateStatus(id, status);
   res.redirect('/mytask');
+
   
 });
 
@@ -206,6 +194,8 @@ router.post('/changeStatusIncomplete/:_id', function(req, res, next) {
   Tasks.updateStatus(id, status);
   res.redirect('/mytask');
 });
+
+
 
 module.exports = router;
 

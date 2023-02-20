@@ -3,17 +3,19 @@
       &nbsp;
    
 
-    <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a>
+    <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a> &nbsp;
+     
 
   &nbsp;
-  <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
+
  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
         <div class="card">
           <div class="card-header p-3">
-            <h5 class="mb-0"><i ></i> Incomplete Tasks </h5>
+            <div class="container"><h3>{{#if incompletetask}}{{else}} {{/if}}</h3></div>
+            <h5 class="mb-0"><i ></i> Incomplete Tasks</h5>
           </div>
           <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 100%">
 
@@ -22,7 +24,7 @@
                 <tr>
                   
                   <th scope="col">Title</th>
-                    <th scope="col">Created At</th>
+                    <th scope="col">Created Date</th>
                   <th scope="col">Type</th>
                   <th scope="col">Due Date</th>
                   <th scope="col">Description</th>
@@ -35,6 +37,8 @@
               </thead>
               <tbody>
           <tr class="fw-normal">
+           
+        
               {{#each incompletetask}}
                   <td class="align-middle">
                          <span class='orderno' data-value='{{this._id}}'>{{this.name}}</span>
@@ -83,6 +87,8 @@
                 </tr>
 
    {{/each}}
+      
+
               </tbody>
             </table>
 
