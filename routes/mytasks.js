@@ -31,11 +31,11 @@ router.get('/mytask', ensureAuthenticated, (req,res) => {
         })
 
         var IncompleteNonAcademic = taskList.filter(obj => {
-          return obj.type !== "Non Academic" && obj.status == "Incomplete";
+          return obj.type == "Non Academic" && obj.status == "Incomplete";
         })
 
         var CompletedNonAcademic = taskList.filter(obj => {
-          return obj.type !== "Non Academic" && obj.status == "Completed";
+          return obj.type == "Non Academic" && obj.status == "Completed";
         })
 
         res.render('tasks', {title: 'SmartList - My Tasks',

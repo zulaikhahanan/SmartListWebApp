@@ -6,7 +6,7 @@
     <a class='btn btn-primary bg-lightblue card-footer border-0' href='/addTask'>Add New Task</a> &nbsp;
      
 
-  &nbsp; &nbsp;
+  &nbsp; &nbsp;  &nbsp;
 
  <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -280,7 +280,7 @@
 
 &nbsp;
 
-<div class="container"><h3>{{#if completetaskandnonacademic}}{{else}} {{/if}}</h3></div>
+<div class="container"><h3>{{#if   completetaskandanoncademic}}{{else}} {{/if}}</h3></div>
         <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-10">
 
@@ -308,7 +308,7 @@
               </thead>
               <tbody>
                           <tr class="fw-normal">
-              {{#each completetaskandnonacademic}}
+              {{#each completetaskandanoncademic}}
                   <td class="align-middle">
                          <span class="ms-2"  data-value='{{this._id}}'>{{this.name}}</span>
                   </td>
