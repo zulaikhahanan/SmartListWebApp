@@ -14,25 +14,48 @@ router.get('/notifications', ensureAuthenticated, (req,res) => {
 
   Acct.getById(_id, function(results){
     
-      Tasks.getById(_id, function(taskList){
-        console.log(taskList)
-        const now = new Date();
-        var Completed = taskList.filter(obj => {
-          return obj.status !== "Incomplete";
-        })
+    Tasks.getById(_id, function(taskList){
+      console.log(taskList)
+      
 
-        var Incomplete = taskList.filter(obj => {
-          return obj.status === "Incomplete";
-        })
-        res.render('notifications', {title: 'SmartList - My Notifications',
-          username: results.username,
-          profilepic: results.profilepic,
-          incompletetask:Incomplete,
-          completetask:Completed,
-          now:now
-        
-        });
+      var IncompleteAcademic = taskList.filter(obj => {
+        return obj.status === "Incomplete" && obj.type === "Academic";
       })
+
+      var CompletedAcademic = taskList.filter(obj => {
+        return obj.status == "Completed" && obj.type === "Academic";
+      })
+
+      var Incomplete = taskList.filter(obj => {
+        return obj.status == "Incomplete";
+      })
+
+      var IncompleteNonAcademic = taskList.filter(obj => {
+        return obj.type == "Non Academic" && obj.status == "Incomplete";
+      })
+
+      var CompletedNonAcademic = taskList.filter(obj => {
+        return obj.type == "Non Academic" && obj.status == "Completed";
+      })
+
+
+      var Completed = taskList.filter(obj => {
+        return obj.status == "Completed";
+      })
+
+      res.render('notifications', {title: 'SmartList - My Notifications',
+        username: results.username,
+        profilepic: results.profilepic,
+        incompletetaskandacademic:IncompleteAcademic,
+        completetaskandacademic:CompletedAcademic,
+        incompletetaskandnonacademic : IncompleteNonAcademic,
+        completetaskandanoncademic : CompletedNonAcademic,
+        incompletetask : Incomplete,
+        completetask : Completed
+      });
+
+   
+    })
   })
 })
 
