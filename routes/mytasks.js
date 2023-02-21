@@ -131,21 +131,6 @@ router.post('/deleteTask/:_id', (req, res, next) => {
 
 	res.redirect("/mytask");
 
-       //Send Notification to the Task Delete
-
-       const msg = 'SmartList Web Application'+"\n" +"\n"+'You Just Delete One Task With Reference Id '+id;
-
-       const accountSid = process.env.ACCOUNT_SID 
-       const authToken = process.env.AUTH_TOKEN
-       const client = require('twilio')(accountSid, authToken);
-        client.messages 
-       .create({ 
-         body:msg, 
-         from: 'whatsapp:+14155238886',       
-         to: 'whatsapp:+60146669736' 
-      }) 
-        .then(message => console.log(message.sid)) ;
-
 });
 
 // Get to View Task Details
